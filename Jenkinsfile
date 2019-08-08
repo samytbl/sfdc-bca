@@ -13,8 +13,11 @@ pipeline {
         echo 'Testing..'
         echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
         //sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev'
-        def ret = sh(script: 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev', returnStdout: true)
-        println ret
+        BUILD_FULL = sh (
+          script: "git log -1 --pretty=%B | grep '\\[jenkins-full]'",
+          returnStatus: true
+        ) == 0
+        echo "Build full flag: ${BUILD_FULL}"
       }
     }
   }
