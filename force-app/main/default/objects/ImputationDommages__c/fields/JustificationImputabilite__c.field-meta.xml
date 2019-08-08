@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>JustificationImputabilite__c</fullName>
+    <externalId>false</externalId>
+    <label>Justification de l&#39;imputabilité</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>ImputabiliteChoc__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Corrosion</fullName>
+                <default>false</default>
+                <label>Corrosion</label>
+            </value>
+            <value>
+                <fullName>Chocs</fullName>
+                <default>false</default>
+                <label>Chocs</label>
+            </value>
+            <value>
+                <fullName>Grêle</fullName>
+                <default>false</default>
+                <label>Grêle</label>
+            </value>
+            <value>
+                <fullName>Effraction</fullName>
+                <default>false</default>
+                <label>Effraction</label>
+            </value>
+            <value>
+                <fullName>Peinture abimée</fullName>
+                <default>false</default>
+                <label>Peinture abimée</label>
+            </value>
+            <value>
+                <fullName>Présence de tags</fullName>
+                <default>false</default>
+                <label>Présence de tags</label>
+            </value>
+            <value>
+                <fullName>Séquelles réparation</fullName>
+                <default>false</default>
+                <label>Séquelles réparation</label>
+            </value>
+            <value>
+                <fullName>Cassure</fullName>
+                <default>false</default>
+                <label>Cassure</label>
+            </value>
+            <value>
+                <fullName>Déchirure</fullName>
+                <default>false</default>
+                <label>Déchirure</label>
+            </value>
+            <value>
+                <fullName>Salissure</fullName>
+                <default>false</default>
+                <label>Salissure</label>
+            </value>
+            <value>
+                <fullName>Usure</fullName>
+                <default>false</default>
+                <label>Usure</label>
+            </value>
+            <value>
+                <fullName>Fuite</fullName>
+                <default>false</default>
+                <label>Fuite</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Non déclaré</controllingFieldValue>
+            <valueName>Corrosion</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non déclaré</controllingFieldValue>
+            <valueName>Chocs</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non déclaré</controllingFieldValue>
+            <valueName>Grêle</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non déclaré</controllingFieldValue>
+            <valueName>Effraction</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non déclaré</controllingFieldValue>
+            <valueName>Peinture abimée</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non déclaré</controllingFieldValue>
+            <valueName>Présence de tags</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non déclaré</controllingFieldValue>
+            <valueName>Séquelles réparation</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non déclaré</controllingFieldValue>
+            <valueName>Cassure</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non déclaré</controllingFieldValue>
+            <valueName>Déchirure</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non déclaré</controllingFieldValue>
+            <valueName>Salissure</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non déclaré</controllingFieldValue>
+            <valueName>Usure</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non déclaré</controllingFieldValue>
+            <valueName>Fuite</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

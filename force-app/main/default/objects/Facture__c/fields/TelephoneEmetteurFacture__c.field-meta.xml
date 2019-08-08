@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TelephoneEmetteurFacture__c</fullName>
+    <description>N° de téléphone de l&#39;émetteur de la facture</description>
+    <externalId>false</externalId>
+    <label>Telephone emetteur facture</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Phone</type>
+</CustomField>

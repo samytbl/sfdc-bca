@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OrientationChoc__c</fullName>
+    <externalId>false</externalId>
+    <label>Orientation du choc</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>PointChoc__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>0</fullName>
+                <default>false</default>
+                <label>0</label>
+            </value>
+            <value>
+                <fullName>45</fullName>
+                <default>false</default>
+                <label>45</label>
+            </value>
+            <value>
+                <fullName>90</fullName>
+                <default>false</default>
+                <label>90</label>
+            </value>
+            <value>
+                <fullName>135</fullName>
+                <default>false</default>
+                <label>135</label>
+            </value>
+            <value>
+                <fullName>180</fullName>
+                <default>false</default>
+                <label>180</label>
+            </value>
+            <value>
+                <fullName>225</fullName>
+                <default>false</default>
+                <label>225</label>
+            </value>
+            <value>
+                <fullName>270</fullName>
+                <default>false</default>
+                <label>270</label>
+            </value>
+            <value>
+                <fullName>315</fullName>
+                <default>false</default>
+                <label>315</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Zone détaillée</controllingFieldValue>
+            <valueName>0</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone détaillée</controllingFieldValue>
+            <valueName>45</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone détaillée</controllingFieldValue>
+            <valueName>90</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone détaillée</controllingFieldValue>
+            <valueName>135</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone détaillée</controllingFieldValue>
+            <valueName>180</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone détaillée</controllingFieldValue>
+            <valueName>225</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone détaillée</controllingFieldValue>
+            <valueName>270</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone détaillée</controllingFieldValue>
+            <valueName>315</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

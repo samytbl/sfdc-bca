@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CoutDommage__c</fullName>
+    <description>Uniquement si Dommage chiffré = OUI</description>
+    <externalId>false</externalId>
+    <label>Coût du dommage</label>
+    <summarizedField>LigneChiffrage__c.PrixHT__c</summarizedField>
+    <summaryFilterItems>
+        <field>LigneChiffrage__c.DommageChiffre__c</field>
+        <operation>equals</operation>
+        <value>Oui</value>
+    </summaryFilterItems>
+    <summaryForeignKey>LigneChiffrage__c.ImputationDommages__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

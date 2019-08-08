@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DateValidationExpert__c</fullName>
+    <description>[datValid] Date de validation du dossier EAD par l’expert</description>
+    <externalId>false</externalId>
+    <label>Date de validation expert</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

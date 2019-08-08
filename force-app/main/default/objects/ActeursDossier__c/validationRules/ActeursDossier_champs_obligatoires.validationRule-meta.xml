@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ActeursDossier_champs_obligatoires</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( ! ISPICKVAL( Role__c , &#39;&#39;) , OR( ISBLANK( Compte__c ) ),OR( ISBLANK( Contact__c ) ),OR( ISBLANK( Utilisateur__c ) )
+,
+ $User.ByPassValidationRules__c =false)</errorConditionFormula>
+    <errorMessage>L&#39;un des champs suivant est obligatoire (Compte, Contact ou Utilisateur)</errorMessage>
+</ValidationRule>

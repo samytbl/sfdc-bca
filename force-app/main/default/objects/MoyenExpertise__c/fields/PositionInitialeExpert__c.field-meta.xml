@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PositionInitialeExpert__c</fullName>
+    <description>[posExpInit] Positionnement de l’expert au début du traitement EAD</description>
+    <externalId>false</externalId>
+    <label>Position initiale de l&#39;expert</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>E</fullName>
+                <default>false</default>
+                <label>E : EAD</label>
+            </value>
+            <value>
+                <fullName>T</fullName>
+                <default>false</default>
+                <label>T : Non EAD</label>
+            </value>
+            <value>
+                <fullName>I</fullName>
+                <default>false</default>
+                <label>I : Inconnue</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

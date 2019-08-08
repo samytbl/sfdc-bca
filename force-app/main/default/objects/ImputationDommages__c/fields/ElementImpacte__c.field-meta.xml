@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ElementImpacte__c</fullName>
+    <externalId>false</externalId>
+    <label>Élément Impacté</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>PointChoc__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Bouclier</fullName>
+                <default>false</default>
+                <label>Bouclier</label>
+            </value>
+            <value>
+                <fullName>Optique phare court</fullName>
+                <default>false</default>
+                <label>Optique phare court</label>
+            </value>
+            <value>
+                <fullName>Feu</fullName>
+                <default>false</default>
+                <label>Feu</label>
+            </value>
+            <value>
+                <fullName>Aile</fullName>
+                <default>false</default>
+                <label>Aile</label>
+            </value>
+            <value>
+                <fullName>Enjol roue</fullName>
+                <default>false</default>
+                <label>Enjol roue</label>
+            </value>
+            <value>
+                <fullName>Roue</fullName>
+                <default>false</default>
+                <label>Roue</label>
+            </value>
+            <value>
+                <fullName>Protection</fullName>
+                <default>false</default>
+                <label>Protection</label>
+            </value>
+            <value>
+                <fullName>Capot</fullName>
+                <default>false</default>
+                <label>Capot</label>
+            </value>
+            <value>
+                <fullName>Calandre</fullName>
+                <default>false</default>
+                <label>Calandre</label>
+            </value>
+            <value>
+                <fullName>Hayon</fullName>
+                <default>false</default>
+                <label>Hayon</label>
+            </value>
+            <value>
+                <fullName>Lunette AR</fullName>
+                <default>false</default>
+                <label>Lunette AR</label>
+            </value>
+            <value>
+                <fullName>Rétro</fullName>
+                <default>false</default>
+                <label>Rétro</label>
+            </value>
+            <value>
+                <fullName>Porte AV</fullName>
+                <default>false</default>
+                <label>Porte AV</label>
+            </value>
+            <value>
+                <fullName>Porte AR</fullName>
+                <default>false</default>
+                <label>Porte AR</label>
+            </value>
+            <value>
+                <fullName>Haut de caisse</fullName>
+                <default>false</default>
+                <label>Haut de caisse</label>
+            </value>
+            <value>
+                <fullName>Bas de caisse</fullName>
+                <default>false</default>
+                <label>Bas de caisse</label>
+            </value>
+            <value>
+                <fullName>Vitre AV</fullName>
+                <default>false</default>
+                <label>Vitre AV</label>
+            </value>
+            <value>
+                <fullName>Vitre AR</fullName>
+                <default>false</default>
+                <label>Vitre AR</label>
+            </value>
+            <value>
+                <fullName>Pare brise</fullName>
+                <default>false</default>
+                <label>Pare brise</label>
+            </value>
+            <value>
+                <fullName>Pavillon</fullName>
+                <default>false</default>
+                <label>Pavillon</label>
+            </value>
+            <value>
+                <fullName>Ensemble</fullName>
+                <default>false</default>
+                <label>Ensemble</label>
+            </value>
+            <value>
+                <fullName>Partie supérieure</fullName>
+                <default>false</default>
+                <label>Partie supérieure</label>
+            </value>
+            <value>
+                <fullName>Partie inférieure</fullName>
+                <default>false</default>
+                <label>Partie inférieure</label>
+            </value>
+            <value>
+                <fullName>AV</fullName>
+                <default>false</default>
+                <label>AV</label>
+            </value>
+            <value>
+                <fullName>AV G</fullName>
+                <default>false</default>
+                <label>AV G</label>
+            </value>
+            <value>
+                <fullName>AV D</fullName>
+                <default>false</default>
+                <label>AV D</label>
+            </value>
+            <value>
+                <fullName>Lateral G</fullName>
+                <default>false</default>
+                <label>Lateral G</label>
+            </value>
+            <value>
+                <fullName>Lateral D</fullName>
+                <default>false</default>
+                <label>Lateral D</label>
+            </value>
+            <value>
+                <fullName>AR G</fullName>
+                <default>false</default>
+                <label>AR G</label>
+            </value>
+            <value>
+                <fullName>AR D</fullName>
+                <default>false</default>
+                <label>AR D</label>
+            </value>
+            <value>
+                <fullName>AR</fullName>
+                <default>false</default>
+                <label>AR</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Zone AV D</controllingFieldValue>
+            <controllingFieldValue>Zone AV G</controllingFieldValue>
+            <controllingFieldValue>Zone AR D</controllingFieldValue>
+            <controllingFieldValue>Zone AR G</controllingFieldValue>
+            <valueName>Bouclier</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone AV D</controllingFieldValue>
+            <controllingFieldValue>Zone AV G</controllingFieldValue>
+            <controllingFieldValue>Zone AR D</controllingFieldValue>
+            <controllingFieldValue>Zone AR G</controllingFieldValue>
+            <valueName>Optique phare court</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone AV D</controllingFieldValue>
+            <controllingFieldValue>Zone AV G</controllingFieldValue>
+            <controllingFieldValue>Zone AR D</controllingFieldValue>
+            <controllingFieldValue>Zone AR G</controllingFieldValue>
+            <valueName>Feu</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone AV D</controllingFieldValue>
+            <controllingFieldValue>Zone AV G</controllingFieldValue>
+            <controllingFieldValue>Zone AR D</controllingFieldValue>
+            <controllingFieldValue>Zone AR G</controllingFieldValue>
+            <valueName>Aile</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone AV D</controllingFieldValue>
+            <controllingFieldValue>Zone AV G</controllingFieldValue>
+            <controllingFieldValue>Zone AR D</controllingFieldValue>
+            <controllingFieldValue>Zone AR G</controllingFieldValue>
+            <valueName>Enjol roue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone AV D</controllingFieldValue>
+            <controllingFieldValue>Zone AV G</controllingFieldValue>
+            <controllingFieldValue>Zone AR D</controllingFieldValue>
+            <controllingFieldValue>Zone AR G</controllingFieldValue>
+            <valueName>Roue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone AV D</controllingFieldValue>
+            <controllingFieldValue>Zone AV G</controllingFieldValue>
+            <controllingFieldValue>Zone AR D</controllingFieldValue>
+            <controllingFieldValue>Zone AR G</controllingFieldValue>
+            <controllingFieldValue>Zone Laterale D</controllingFieldValue>
+            <controllingFieldValue>Zone Laterale G</controllingFieldValue>
+            <valueName>Protection</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone AV D</controllingFieldValue>
+            <controllingFieldValue>Zone AV G</controllingFieldValue>
+            <valueName>Capot</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone AV D</controllingFieldValue>
+            <controllingFieldValue>Zone AV G</controllingFieldValue>
+            <valueName>Calandre</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone AR D</controllingFieldValue>
+            <controllingFieldValue>Zone AR G</controllingFieldValue>
+            <valueName>Hayon</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone AR D</controllingFieldValue>
+            <controllingFieldValue>Zone AR G</controllingFieldValue>
+            <valueName>Lunette AR</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone Laterale D</controllingFieldValue>
+            <controllingFieldValue>Zone Laterale G</controllingFieldValue>
+            <valueName>Rétro</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone Laterale D</controllingFieldValue>
+            <controllingFieldValue>Zone Laterale G</controllingFieldValue>
+            <valueName>Porte AV</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone Laterale D</controllingFieldValue>
+            <controllingFieldValue>Zone Laterale G</controllingFieldValue>
+            <valueName>Porte AR</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone Laterale D</controllingFieldValue>
+            <controllingFieldValue>Zone Laterale G</controllingFieldValue>
+            <valueName>Haut de caisse</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone Laterale D</controllingFieldValue>
+            <controllingFieldValue>Zone Laterale G</controllingFieldValue>
+            <valueName>Bas de caisse</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone Laterale D</controllingFieldValue>
+            <controllingFieldValue>Zone Laterale G</controllingFieldValue>
+            <valueName>Vitre AV</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone Laterale D</controllingFieldValue>
+            <controllingFieldValue>Zone Laterale G</controllingFieldValue>
+            <valueName>Vitre AR</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone d&#39;ensemble</controllingFieldValue>
+            <valueName>Pare brise</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone d&#39;ensemble</controllingFieldValue>
+            <valueName>Pavillon</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone d&#39;ensemble</controllingFieldValue>
+            <valueName>Ensemble</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone d&#39;ensemble</controllingFieldValue>
+            <valueName>Partie supérieure</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone d&#39;ensemble</controllingFieldValue>
+            <valueName>Partie inférieure</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone détaillée</controllingFieldValue>
+            <valueName>AV</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone détaillée</controllingFieldValue>
+            <valueName>AV G</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone détaillée</controllingFieldValue>
+            <valueName>AV D</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone détaillée</controllingFieldValue>
+            <valueName>Lateral G</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone détaillée</controllingFieldValue>
+            <valueName>Lateral D</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone détaillée</controllingFieldValue>
+            <valueName>AR G</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone détaillée</controllingFieldValue>
+            <valueName>AR D</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zone détaillée</controllingFieldValue>
+            <valueName>AR</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,7 +1,7 @@
 /** 
 * @author: Adolphe SONKO
 * @date : Creation 07/06/2019
-* @date : Modification 15/07/2019
+* @date : Modification 05/08/2019
 * @description : This Class allows to handle trigger events in Vehicule (Asset) entity.
 */
 public class SM001_VehiculeTriggerHandler {
@@ -53,7 +53,7 @@ public class SM001_VehiculeTriggerHandler {
            List<Asset> listVehicules = DM001_Vehicule.getListByIds(vehiculesIds);
           
            //Get the URL of the environment 
-           SivitParameters__c param_setting = APU001_SivitConfigUtils.sParameter;
+           SivitParameters__c param_setting = APU001_ConfigUtils.sParameter;
            system.debug('ADBS param_setting     : ' + param_setting); 
                               
            for(Asset  a: listVehicules){
@@ -136,7 +136,8 @@ public class SM001_VehiculeTriggerHandler {
         vehicOfficiel.ImmatriculationVehicule__c  = transformeImmat(resultImmat.immatSiv) ;
         vehicOfficiel.LargeurEnCm__c  = resultImmat.largeur ;
         vehicOfficiel.LongueurEnCm__c  = resultImmat.longueur ;
-        vehicOfficiel.LibelleMarqueVehiculeAssure__c  = resultImmat.marque ;
+     //   vehicOfficiel.LibelleMarqueVehiculeAssure__c  = resultImmat.marque ;
+        vehicOfficiel.LibelleMarqueVehicule__c  = resultImmat.marque ;
         vehicOfficiel.MarqueCarrosserieVehicule__c  = resultImmat.marqueCarros ;
         vehicOfficiel.LibelleModeleInjection__c  = resultImmat.modeInject ;
         vehicOfficiel.LibelleModeleRedresseAPRF__c  = resultImmat.modele ;

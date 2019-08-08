@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ActeursDossier_champ_a_remplir</fullName>
+    <active>true</active>
+    <description>L&#39;un de ces trois champs (Compte, Contact ou Utilisateur ) est renseigné a la fois</description>
+    <errorConditionFormula>AND(AND(  !ISBLANK(Compte__c ), OR(!ISBLANK( Contact__c  ),!ISBLANK( Utilisateur__c  ))) || 
+AND(  !ISBLANK(Contact__c ), OR(!ISBLANK( Compte__c  ),!ISBLANK( Utilisateur__c  ))) || 
+AND(  !ISBLANK(Utilisateur__c ), OR(!ISBLANK( Contact__c  ),!ISBLANK( Compte__c  )))
+,
+ $User.ByPassValidationRules__c =false)</errorConditionFormula>
+    <errorMessage>Maximun un de ces champs (Compte, Contact ou Utilisateur ) doit être remplie a la fois</errorMessage>
+</ValidationRule>

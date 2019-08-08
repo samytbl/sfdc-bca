@@ -1,7 +1,7 @@
 /** 
 * @author: Adolphe Sonko
 * @date : Création 05/07/2019
-* @date : Modification 05/07/2019
+* @date : Modification 30/07/2019
 * @description : Server side Controller of ModificationLigneschiffrage component.
 */
 public class LigneChiffrageController {
@@ -11,9 +11,9 @@ public class LigneChiffrageController {
     	List<LigneChiffrage__c> ligneChiffrages = new List<LigneChiffrage__c>();
         
         ligneChiffrages =  [SELECT Id, Name, CodeAction__c ,CodeCote__c, CodePiece__c,CodeTVA__c,IndicateurApplicationRemisesGlobales__c,IndicateurPQE__c,IndicateurPRE__c,IndicateurVE__c,Libelle__c,LibelleLigne__c,Matiere__c,NomFournisseur__c,NumeroLigne__c,
-        					OrigineLigne__c,OrigineProvenance__c,PrixHT__c,QuantitePiece__c,ReferencePieceConstructeur__c,ReferencePieceFournisseur__c,TempsT1__c,TempsT2__c,TempsT3__c,TempsTP__c, Chiffrage__c, Chiffrage__r.MontantACL__c, Chiffrage__r.PourcentageRemise__c,
+        					OrigineLigne__c,OrigineProvenance__c,PrixHT__c,QuantitePiece__c,ReferencePieceConstructeur__c,ReferencePieceFournisseur__c,TempsT1__c,TempsT2__c,TempsT3__c,TempsTP__c, Chiffrage__c, Chiffrage__r.Name, Chiffrage__r.MontantACL__c, Chiffrage__r.PourcentageRemise__c,
                             ImputationDommages__c,ImputationDommages__r.Name,ImputationDommages__r.NumeroChoc__c, ImputationDommages__r.ImputabiliteChoc__c
-                     		FROM LigneChiffrage__c where Chiffrage__c =:chiffrageId];
+                     		FROM LigneChiffrage__c where Chiffrage__c =:chiffrageId ORDER BY ImputationDommages__r.ImputabiliteChoc__c ASC];
         return ligneChiffrages;
         
     }
@@ -77,7 +77,7 @@ public class LigneChiffrageController {
     }
     
     
-    //=============== Sauvegarde de données======
+    //=============== Sauvegarde de données ======
     
       @auraEnabled
       public  static void  sauvegarderLignes(List<LigneChiffrage__c> updatedData, List<string> deletedlignes ){
@@ -101,12 +101,32 @@ public class LigneChiffrageController {
               //Update Chiffrage
               update parentChiffrageToUpdate;
            
-              system.debug('Heree are the updatedData : ' + updatedData);
-              system.debug('Heree are the updated parent Chiffrage : ' + parentChiffrageToUpdate);
+              system.debug('Here are the updatedData : ' + updatedData);
+              system.debug('Here are the updated parent Chiffrage : ' + parentChiffrageToUpdate);
           }
 
        
       } 
+    
+    
+    //=============== Suppression de données ======
+    @AuraEnabled 
+    public static void massDeleteLignesChiffrage(List<String> delIDs){
+       
+     List<LigneChiffrage__c> lstOfDeleteLignes =  new List<LigneChiffrage__c>();
+         for(String st: delIDs){
+             LigneChiffrage__c lg = new LigneChiffrage__c();
+             lg.Id = (Id)st ;
+             lstOfDeleteLignes.add(lg); 
+          }
+          
+        if(lstOfDeleteLignes != null && lstOfDeleteLignes.size() > 0){
+            Delete lstOfDeleteLignes;
+            system.debug('Here are the Deleted Lignes Chiffrage : ' + lstOfDeleteLignes);
+        }
+          
+ 
+    }
     
     //=============== method for fetch picklist values dynamic ======
 

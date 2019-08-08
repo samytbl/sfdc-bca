@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CodeExpert__c</fullName>
+    <description>[codIntervExp] Identifiant de l’expert ayant traité le Dossier EAD</description>
+    <externalId>false</externalId>
+    <label>Code expert</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

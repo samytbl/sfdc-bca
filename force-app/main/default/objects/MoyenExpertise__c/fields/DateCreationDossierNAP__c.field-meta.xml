@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DateCreationDossierNAP__c</fullName>
+    <description>[datDlNap] Date de téléchargement du Dossier EAD dans NAP</description>
+    <externalId>false</externalId>
+    <label>Date de création du dossier NAP</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

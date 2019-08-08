@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OrdreMission</fullName>
+    <fields>Name</fields>
+    <fields>NatureMission__c</fields>
+    <fields>NumeroMissionBCA__c</fields>
+    <fields>DateSinistre__c</fields>
+    <fields>Dossier__c</fields>
+    <fields>NumeroSinistre__c</fields>
+    <label>Ordre de mission</label>
+</CompactLayout>

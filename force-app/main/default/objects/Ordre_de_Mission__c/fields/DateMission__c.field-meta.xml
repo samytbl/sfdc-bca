@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DateMission__c</fullName>
+    <description>[DATSA] Date à laquelle le client a enregistré la demande</description>
+    <externalId>false</externalId>
+    <inlineHelpText>[DATSA] Date à laquelle le client a enregistré la demande</inlineHelpText>
+    <label>Date de la mission</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

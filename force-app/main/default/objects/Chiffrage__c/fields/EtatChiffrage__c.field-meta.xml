@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EtatChiffrage__c</fullName>
+    <externalId>false</externalId>
+    <label>Etat du Chiffrage</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>En cours</fullName>
+                <default>true</default>
+                <label>En cours</label>
+            </value>
+            <value>
+                <fullName>Exploitable</fullName>
+                <default>false</default>
+                <label>Exploitable</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ImputabiliteChoc__c</fullName>
+    <externalId>false</externalId>
+    <label>Imputabilité du choc</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Imputable</fullName>
+                <default>false</default>
+                <label>Imputable</label>
+            </value>
+            <value>
+                <fullName>Non imputable</fullName>
+                <default>false</default>
+                <label>Non imputable</label>
+            </value>
+            <value>
+                <fullName>Non déclaré</fullName>
+                <default>false</default>
+                <label>Non déclaré</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

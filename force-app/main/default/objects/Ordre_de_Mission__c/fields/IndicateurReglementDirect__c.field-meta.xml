@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IndicateurReglementDirect__c</fullName>
+    <description>[RGDIR] Indique si le règlement doit se faire directement.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>[RGDIR] Indique si le règlement doit se faire directement.</inlineHelpText>
+    <label>Indicateur règlement direct</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>N</fullName>
+                <default>false</default>
+                <label>N : Pas de règlement direct</label>
+            </value>
+            <value>
+                <fullName>I</fullName>
+                <default>false</default>
+                <label>I : IDA</label>
+            </value>
+            <value>
+                <fullName>T</fullName>
+                <default>false</default>
+                <label>T : Tierce ou Tierce collision</label>
+            </value>
+            <value>
+                <fullName>D</fullName>
+                <default>false</default>
+                <label>D : IDA et tierce ou tierce collision</label>
+            </value>
+            <value>
+                <fullName>W</fullName>
+                <default>false</default>
+                <label>W : Vol sous réserve</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

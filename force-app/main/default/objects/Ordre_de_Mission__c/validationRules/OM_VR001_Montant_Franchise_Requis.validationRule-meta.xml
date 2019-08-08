@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OM_VR001_Montant_Franchise_Requis</fullName>
+    <active>true</active>
+    <description>Montant franchise doit être renseigné si type de franchise égal à &quot;Montant fixe&quot;, &quot;Forfait et complément proportionnel&quot;, ou &quot;Proportionnelle avec limite&quot;.</description>
+    <errorConditionFormula>AND
+   (ISNULL( MontantPlancheOuFixeFranchise__c ),
+     OR
+       ( ISPICKVAL(TypeFranchise__c ,&#39;A&#39;),
+         ISPICKVAL(TypeFranchise__c ,&#39;B&#39;),
+         ISPICKVAL(TypeFranchise__c ,&#39;C&#39;)
+       ),
+       $User.ByPassValidationRules__c = false
+)</errorConditionFormula>
+    <errorDisplayField>MontantPlancheOuFixeFranchise__c</errorDisplayField>
+    <errorMessage>Merci de renseigner le montant planché ou fixe de franchise.</errorMessage>
+</ValidationRule>

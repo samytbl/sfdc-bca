@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GarantieMiseEnJeuDeux__c</fullName>
+    <description>[GARMJ2]</description>
+    <externalId>false</externalId>
+    <label>2ème Garantie mise en jeu</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>A : Avance recours</fullName>
+                <default>false</default>
+                <label>A : Avance recours</label>
+            </value>
+            <value>
+                <fullName>R : Responsabilité civile</fullName>
+                <default>false</default>
+                <label>R : Responsabilité civile</label>
+            </value>
+            <value>
+                <fullName>D : Défense – recours</fullName>
+                <default>false</default>
+                <label>D : Défense – recours</label>
+            </value>
+            <value>
+                <fullName>T : Tierce</fullName>
+                <default>false</default>
+                <label>T : Tierce</label>
+            </value>
+            <value>
+                <fullName>C : Tierce collision</fullName>
+                <default>false</default>
+                <label>C : Tierce collision</label>
+            </value>
+            <value>
+                <fullName>V : Vol</fullName>
+                <default>false</default>
+                <label>V : Vol</label>
+            </value>
+            <value>
+                <fullName>I : Incendie</fullName>
+                <default>false</default>
+                <label>I : Incendie</label>
+            </value>
+            <value>
+                <fullName>B : Bris de glace</fullName>
+                <default>false</default>
+                <label>B : Bris de glace</label>
+            </value>
+            <value>
+                <fullName>Z : Autre</fullName>
+                <default>false</default>
+                <label>Z : Autre</label>
+            </value>
+            <value>
+                <fullName>P : Protection juridique</fullName>
+                <default>false</default>
+                <label>P : Protection juridique</label>
+            </value>
+            <value>
+                <fullName>E : Absorption de corps étranger</fullName>
+                <default>false</default>
+                <label>E : Absorption de corps étranger</label>
+            </value>
+            <value>
+                <fullName>F : dommage électrique</fullName>
+                <default>false</default>
+                <label>F : dommage électrique</label>
+            </value>
+            <value>
+                <fullName>H : marchandise transportée</fullName>
+                <default>false</default>
+                <label>H : marchandise transportée</label>
+            </value>
+            <value>
+                <fullName>L : Vandalisme/attentat</fullName>
+                <default>false</default>
+                <label>L : Vandalisme/attentat</label>
+            </value>
+            <value>
+                <fullName>M : bris de machine</fullName>
+                <default>false</default>
+                <label>M : bris de machine</label>
+            </value>
+            <value>
+                <fullName>N : catastrophe naturelle</fullName>
+                <default>false</default>
+                <label>N : catastrophe naturelle</label>
+            </value>
+            <value>
+                <fullName>U : dommages aux pneus</fullName>
+                <default>false</default>
+                <label>U : dommages aux pneus</label>
+            </value>
+            <value>
+                <fullName>O : immobilisation</fullName>
+                <default>false</default>
+                <label>O : immobilisation</label>
+            </value>
+            <value>
+                <fullName>G : Passage sur dénivellation</fullName>
+                <default>false</default>
+                <label>G : Passage sur dénivellation</label>
+            </value>
+            <value>
+                <fullName>J : Bris de moteur</fullName>
+                <default>false</default>
+                <label>J : Bris de moteur</label>
+            </value>
+            <value>
+                <fullName>Q : Dommage électronique</fullName>
+                <default>false</default>
+                <label>Q : Dommage électronique</label>
+            </value>
+            <value>
+                <fullName>K : Attelage</fullName>
+                <default>false</default>
+                <label>K : Attelage</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>6</visibleLines>
+</CustomField>

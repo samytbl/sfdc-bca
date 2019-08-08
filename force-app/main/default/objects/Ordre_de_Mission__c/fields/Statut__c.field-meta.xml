@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Statut__c</fullName>
+    <externalId>false</externalId>
+    <label>Statut</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Réception</fullName>
+                <default>true</default>
+                <label>Réception</label>
+            </value>
+            <value>
+                <fullName>Planification</fullName>
+                <default>false</default>
+                <label>Planification</label>
+            </value>
+            <value>
+                <fullName>Expertise</fullName>
+                <default>false</default>
+                <label>Expertise</label>
+            </value>
+            <value>
+                <fullName>Pré-rapport</fullName>
+                <default>false</default>
+                <label>Pré-rapport</label>
+            </value>
+            <value>
+                <fullName>Suivi Réparation</fullName>
+                <default>false</default>
+                <label>Suivi Réparation</label>
+            </value>
+            <value>
+                <fullName>Traitement</fullName>
+                <default>false</default>
+                <label>Traitement</label>
+            </value>
+            <value>
+                <fullName>Rapport Final</fullName>
+                <default>false</default>
+                <label>Rapport Final</label>
+            </value>
+            <value>
+                <fullName>Gestion Honoraires</fullName>
+                <default>false</default>
+                <label>Gestion Honoraires</label>
+            </value>
+            <value>
+                <fullName>Archivage</fullName>
+                <default>false</default>
+                <label>Archivage</label>
+            </value>
+            <value>
+                <fullName>Après-Vente</fullName>
+                <default>false</default>
+                <label>Après-Vente</label>
+            </value>
+            <value>
+                <fullName>Attente prestation</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Attente prestation</label>
+            </value>
+            <value>
+                <fullName>Brouillon</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Brouillon</label>
+            </value>
+            <value>
+                <fullName>Envoyé au client</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Envoyé au client</label>
+            </value>
+            <value>
+                <fullName>Terminé</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Terminé</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -37,12 +37,12 @@ public class SM002_CaseTriggerHandler {
         List<PointRemarquable__c > listPointsRemarToInsert = new List<PointRemarquable__c >() ;
         
         for(Case c: dossiers){
-            if(String.isNotEmpty(c.DommagesDeclares__c) || String.isNotEmpty(c.CirconstancesSinistre__c) || String.isNotEmpty(c.CommentairesLigne1__c)){
+            if(String.isNotEmpty(c.DommagesDeclares__c) || String.isNotEmpty(c.CirconstancesSinistre__c) || String.isNotEmpty(c.Commentaires__c)){
                 String input = '' ;
                 String[] com = null;
                 
-                if(String.isNotEmpty(c.CommentairesLigne1__c)){
-                    com = String.valueOf(c.CommentairesLigne1__c).split('\r\n') ;     //CommentairesLigne1__c is a long text area field
+                if(String.isNotEmpty(c.Commentaires__c)){
+                    com = String.valueOf(c.Commentaires__c).split('\r\n') ;     //CommentairesLigne1__c is a long text area field
                 	input = String.join(com, ' ')  ;
                 }
                 
@@ -75,7 +75,13 @@ public class SM002_CaseTriggerHandler {
                        listPointsRemarToInsert.add(ptRem3) ;
                 }           
              //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-             
+             /**
+     * @author: Menad CHABI
+     * @date : Modification 05/07/2019
+     * @description : This method creates points remarquables for the cases.
+     * @param : List<Case> dossiers.
+     * @return : -Non-
+     */
                  if( Pattern.matches('(.*?\\b|.*?)(?i)(rendez|rdv).{1,20}[0-9]{1,2}.*?\\b.*?', input ) ){
                        
                        PointRemarquable__c  ptRem4 = new PointRemarquable__c ( 
@@ -85,7 +91,7 @@ public class SM002_CaseTriggerHandler {
                        listPointsRemarToInsert.add(ptRem4) ;
                 }      
                 
-                if( Pattern.matches('(.*?\\b|.*?)(?i)((chasse.{1,10}recour)|(gr(é|e).{1,3}gr(é|e))).*?\\b.*?', input ) ){
+                if( Pattern.matches('(.*?\\b|.*?)(?i)(recour(e|s)|(chasse.{1,10}recour)|(gr(é|e).{1,3}gr(é|e))).*?\\b.*?', input ) ){
                   
                        PointRemarquable__c  ptRem5 = new PointRemarquable__c ( 
                        Name = system.label.TECH_Point_Remarq_chasse_au_recours
@@ -124,6 +130,9 @@ public class SM002_CaseTriggerHandler {
         ObjectUtil.debugLogEnd(CLASS_NAME, methodName, '[listPointsRemarToInsert] : ' + listPointsRemarToInsert);
 
     }
+    
+    
+    
     
     
 }

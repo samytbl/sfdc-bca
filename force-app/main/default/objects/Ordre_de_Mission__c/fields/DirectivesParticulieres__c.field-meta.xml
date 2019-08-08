@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DirectivesParticulieres__c</fullName>
+    <description>[DIPA1]</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Pour le produit AA :
+- libellé : « VALEUR A NEUF JUSQU&#39;AUX n ANS DE L&#39;AUTOMOTEUR » avec n correspondant au niveau d’indemnisation</inlineHelpText>
+    <label>Directives particulières</label>
+    <length>560</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+</CustomField>

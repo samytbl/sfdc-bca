@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Role__c</fullName>
+    <externalId>false</externalId>
+    <label>Rôle</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>C</fullName>
+                <default>false</default>
+                <label>Centre d&#39;expertise</label>
+            </value>
+            <value>
+                <fullName>CA</fullName>
+                <default>false</default>
+                <label>Correspondant autre</label>
+            </value>
+            <value>
+                <fullName>CF</fullName>
+                <default>false</default>
+                <label>Correspondant fraude</label>
+            </value>
+            <value>
+                <fullName>CJ</fullName>
+                <default>false</default>
+                <label>Correspondant PT5J</label>
+            </value>
+            <value>
+                <fullName>CP</fullName>
+                <default>false</default>
+                <label>Correspondant PT</label>
+            </value>
+            <value>
+                <fullName>CQ</fullName>
+                <default>false</default>
+                <label>Correspondant PT n°2</label>
+            </value>
+            <value>
+                <fullName>CR</fullName>
+                <default>false</default>
+                <label>Correspondant PT n°3</label>
+            </value>
+            <value>
+                <fullName>CS</fullName>
+                <default>false</default>
+                <label>Correspondant sinistre</label>
+            </value>
+            <value>
+                <fullName>CT</fullName>
+                <default>false</default>
+                <label>Centre contrôle technique</label>
+            </value>
+            <value>
+                <fullName>CV</fullName>
+                <default>false</default>
+                <label>Correspondant Vol</label>
+            </value>
+            <value>
+                <fullName>D</fullName>
+                <default>false</default>
+                <label>Délégation BCA</label>
+            </value>
+            <value>
+                <fullName>DH</fullName>
+                <default>false</default>
+                <label>Destinataire honoraires</label>
+            </value>
+            <value>
+                <fullName>DP</fullName>
+                <default>false</default>
+                <label>Depositaire</label>
+            </value>
+            <value>
+                <fullName>DR</fullName>
+                <default>false</default>
+                <label>Destinataire du réglement</label>
+            </value>
+            <value>
+                <fullName>DS</fullName>
+                <default>false</default>
+                <label>Direction sinistre</label>
+            </value>
+            <value>
+                <fullName>EL</fullName>
+                <default>false</default>
+                <label>Expert Libéral</label>
+            </value>
+            <value>
+                <fullName>ET</fullName>
+                <default>false</default>
+                <label>Emetteur du tiers</label>
+            </value>
+            <value>
+                <fullName>F</fullName>
+                <default>false</default>
+                <label>Fourrière</label>
+            </value>
+            <value>
+                <fullName>LO</fullName>
+                <default>false</default>
+                <label>Locataire</label>
+            </value>
+            <value>
+                <fullName>LX</fullName>
+                <default>false</default>
+                <label>Lieu d&#39;examen</label>
+            </value>
+            <value>
+                <fullName>MO</fullName>
+                <default>false</default>
+                <label>Meilleur offrant</label>
+            </value>
+            <value>
+                <fullName>P1</fullName>
+                <default>false</default>
+                <label>Propriétaire 1</label>
+            </value>
+            <value>
+                <fullName>PF</fullName>
+                <default>false</default>
+                <label>Préfecture</label>
+            </value>
+            <value>
+                <fullName>PL</fullName>
+                <default>false</default>
+                <label>Propriétaire/loueur</label>
+            </value>
+            <value>
+                <fullName>RC</fullName>
+                <default>false</default>
+                <label>Récupérateur</label>
+            </value>
+            <value>
+                <fullName>RF</fullName>
+                <default>false</default>
+                <label>Réparateur facture</label>
+            </value>
+            <value>
+                <fullName>RV</fullName>
+                <default>false</default>
+                <label>Lieu de rendez-vous</label>
+            </value>
+            <value>
+                <fullName>S</fullName>
+                <default>false</default>
+                <label>Sous-traitant</label>
+            </value>
+            <value>
+                <fullName>SB</fullName>
+                <default>false</default>
+                <label>Siège BCA</label>
+            </value>
+            <value>
+                <fullName>ST</fullName>
+                <default>false</default>
+                <label>Société du tiers</label>
+            </value>
+            <value>
+                <fullName>TL</fullName>
+                <default>false</default>
+                <label>Travail du lésé</label>
+            </value>
+            <value>
+                <fullName>U</fullName>
+                <default>false</default>
+                <label>Utilisateur</label>
+            </value>
+            <value>
+                <fullName>V</fullName>
+                <default>false</default>
+                <label>Voie publique</label>
+            </value>
+            <value>
+                <fullName>VE</fullName>
+                <default>false</default>
+                <label>Vendeur</label>
+            </value>
+            <value>
+                <fullName>XC</fullName>
+                <default>false</default>
+                <label>Expert conseil</label>
+            </value>
+            <value>
+                <fullName>XJ</fullName>
+                <default>false</default>
+                <label>Expert judiciaire</label>
+            </value>
+            <value>
+                <fullName>Z</fullName>
+                <default>false</default>
+                <label>Autre</label>
+            </value>
+            <value>
+                <fullName>Z1</fullName>
+                <default>false</default>
+                <label>Autre 1</label>
+            </value>
+            <value>
+                <fullName>Z2</fullName>
+                <default>false</default>
+                <label>Autre 2</label>
+            </value>
+            <value>
+                <fullName>Z3</fullName>
+                <default>false</default>
+                <label>Autre 3</label>
+            </value>
+            <value>
+                <fullName>Z4</fullName>
+                <default>false</default>
+                <label>Autre 4</label>
+            </value>
+            <value>
+                <fullName>Z5</fullName>
+                <default>false</default>
+                <label>Autre 5</label>
+            </value>
+            <value>
+                <fullName>Z9</fullName>
+                <default>false</default>
+                <label>Autre 9</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

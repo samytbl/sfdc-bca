@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VehiculeAExpertiser__c</fullName>
+    <description>[PROVE] Véhicule(s) faisant l&#39;objet du sinistre.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>[PROVE]</inlineHelpText>
+    <label>Véhicule à expertiser</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>A</fullName>
+                <default>false</default>
+                <label>A : véhicule assuré et autre véhicule sinistré si ce dernier est renseigné.</label>
+            </value>
+            <value>
+                <fullName>S</fullName>
+                <default>false</default>
+                <label>S : autre véhicule sinistré seul</label>
+            </value>
+            <value>
+                <fullName>T</fullName>
+                <default>false</default>
+                <label>T : tiers</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

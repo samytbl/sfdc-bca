@@ -211,7 +211,7 @@ public class WS001_Edi_TEST {
 
             dto = new WS001_Edi.Emetteur();        
             dto.TypeEmetteur = '';
-            dto.Civilite = 'MLLE';
+            dto.Title = 'MLLE';
             dto.Name = 'BENESSY';
             dto.BillingStreet = 'FLORIANE LIEU DIT LA REPUBLIQUE CHEZ BENESSY BERNARD';
             dto.BillingPostalCode = '42660';
@@ -254,7 +254,7 @@ public class WS001_Edi_TEST {
 
             dto = new WS001_Edi.Lese();
             dto.NPoliceAssure = '6644922906';
-            dto.Civilite = 'MLLE';
+            dto.Title = 'MLLE';
             dto.Name = 'BENESSY';
             dto.BillingStreet = 'FLORIANE LIEU DIT LA REPUBLIQUE CHEZ BENESSY BERNARD';
             dto.BillingPostalCode = '42660';
@@ -279,7 +279,7 @@ public class WS001_Edi_TEST {
         public override void initSimple(){
 
             dto = new WS001_Edi.Reparateur();
-            dto.Civilite = 'Z';
+            dto.Title = 'Z';
             dto.Name = 'FOURRIERE DE PARIS';
             dto.BillingStreet = '32 QUAI DE CLICHY';
             dto.BillingPostalCode = '92110';
@@ -302,7 +302,7 @@ public class WS001_Edi_TEST {
         public override void initSimple(){
 
             dto = new WS001_Edi.Tiers();
-            dto.Civilite = '';
+            dto.Title = '';
             dto.Name = 'GUERROUMI';
             dto.BillingStreet = '';
             dto.BillingCountry = '';

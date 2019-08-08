@@ -1,0 +1,39 @@
+<aura:component 
+	implements="flexipage:availableForRecordHome,flexipage:availableForAllPageTypes,force:lightningQuickAction,lightning:actionOverride,force:hasRecordId" >
+	
+    <!-- ===================== ATTRIBUTS ====================================== -->
+    
+    <aura:attribute name="recordId"  type="String" />
+    <aura:attribute name="numDos"    type="String" />
+    <aura:attribute name="typeDoccument"    type="String" />
+    <aura:attribute name="codeQualification"    type="String" />
+    <aura:attribute name="myBool"           type="Boolean" default="true"/>
+    <aura:attribute name="method" type="String" default="GET" />
+    <aura:attribute name="url" type="String" />
+    <aura:attribute name="async" type="Boolean" default="true" />
+    <aura:attribute name="callbackMethod" type="Object" />
+    <!-- HANDLER -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="aura:waiting" action="{!c.waiting}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.doneWaiting}"/>
+    
+   <!-- <lightning:fileUpload label="Attach receipt"
+        multiple="true"
+        accept=".pdf, .png"
+        recordId="{!v.recordId}"
+        onuploadfinished="{!c.handleUploadFinished}" /> -->
+    
+        
+    
+    <div>
+        <input type="file" class="file" aura:id="file" />
+      <!--  <ui:button label="Save" press="{!c.save}"/> -->
+        <lightning:button variant="brand" label="Upload" title="Upload" onclick="{! c.save }" />
+        
+        <div aura:id="uploading" class="notUploading">
+            <img src="/resource/paura__images/loading-gray.gif" alt="uploading" class="small-spinner" /> Uploading...
+    	</div>
+    </div>
+    
+    
+</aura:component>

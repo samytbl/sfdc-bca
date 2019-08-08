@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Type</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Civilite</fullName>
+                <default>true</default>
+                <label>Civilite</label>
+            </value>
+            <value>
+                <fullName>Pays</fullName>
+                <default>false</default>
+                <label>Pays</label>
+            </value>
+            <value>
+                <fullName>GarantieMiseEnJeu</fullName>
+                <default>false</default>
+                <label>Garantie mise en jeu</label>
+            </value>
+            <value>
+                <fullName>CodeLieuExamen</fullName>
+                <default>false</default>
+                <label>Lieu examen</label>
+            </value>
+            <value>
+                <fullName>SituationMaterielsExpertise</fullName>
+                <default>false</default>
+                <label>Situation des matériels à expertiser</label>
+            </value>
+            <value>
+                <fullName>TypeFranchise</fullName>
+                <default>false</default>
+                <label>Type de Franchise</label>
+            </value>
+            <value>
+                <fullName>IndicateurReglementDirect</fullName>
+                <default>false</default>
+                <label>Indicateur Règlement Direct</label>
+            </value>
+            <value>
+                <fullName>ConditionsAchatVehicule</fullName>
+                <default>false</default>
+                <label>Conditions d&#39;achat du véhicule</label>
+            </value>
+            <value>
+                <fullName>VehiculeAExpertiser</fullName>
+                <default>false</default>
+                <label>VehiculeAExpertiser</label>
+            </value>
+            <value>
+                <fullName>ZonesChoc</fullName>
+                <default>false</default>
+                <label>Zone(s) de choc</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

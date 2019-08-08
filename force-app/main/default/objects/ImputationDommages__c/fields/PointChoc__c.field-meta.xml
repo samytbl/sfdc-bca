@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PointChoc__c</fullName>
+    <externalId>false</externalId>
+    <label>Point de choc</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>ImputabiliteChoc__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Zone AV D</fullName>
+                <default>false</default>
+                <label>Zone AV D</label>
+            </value>
+            <value>
+                <fullName>Zone AV G</fullName>
+                <default>false</default>
+                <label>Zone AV G</label>
+            </value>
+            <value>
+                <fullName>Zone AR D</fullName>
+                <default>false</default>
+                <label>Zone AR D</label>
+            </value>
+            <value>
+                <fullName>Zone AR G</fullName>
+                <default>false</default>
+                <label>Zone AR G</label>
+            </value>
+            <value>
+                <fullName>Zone Laterale D</fullName>
+                <default>false</default>
+                <label>Zone Laterale D</label>
+            </value>
+            <value>
+                <fullName>Zone Laterale G</fullName>
+                <default>false</default>
+                <label>Zone Laterale G</label>
+            </value>
+            <value>
+                <fullName>Zone d&#39;ensemble</fullName>
+                <default>false</default>
+                <label>Zone d&#39;ensemble</label>
+            </value>
+            <value>
+                <fullName>Zone détaillée</fullName>
+                <default>false</default>
+                <label>Zone détaillée</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Imputable</controllingFieldValue>
+            <valueName>Zone d&#39;ensemble</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Imputable</controllingFieldValue>
+            <valueName>Zone détaillée</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non imputable</controllingFieldValue>
+            <valueName>Zone AV D</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non imputable</controllingFieldValue>
+            <valueName>Zone AV G</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non imputable</controllingFieldValue>
+            <valueName>Zone AR D</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non imputable</controllingFieldValue>
+            <valueName>Zone AR G</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non imputable</controllingFieldValue>
+            <valueName>Zone Laterale D</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Non imputable</controllingFieldValue>
+            <valueName>Zone Laterale G</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Commentaires__c</fullName>
+    <description>[COM1] [COM2] [COM3] [COM4] [COM5] [COM6] [COM7] [COM8] [COM9] [COM10]</description>
+    <externalId>false</externalId>
+    <label>Commentaires</label>
+    <length>800</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+</CustomField>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dossier__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>Dossier créé suite à cette O.M.</description>
+    <externalId>false</externalId>
+    <label>Dossier associé</label>
+    <referenceTo>Case</referenceTo>
+    <relationshipLabel>Ordre de mission</relationshipLabel>
+    <relationshipName>Ordres_de_mission</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

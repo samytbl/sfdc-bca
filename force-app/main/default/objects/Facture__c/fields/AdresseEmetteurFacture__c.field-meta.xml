@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AdresseEmetteurFacture__c</fullName>
+    <description>Adresse de l&#39;émetteur de la facture (4 lignes)</description>
+    <externalId>false</externalId>
+    <label>Adresse emetteur facture</label>
+    <length>38</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

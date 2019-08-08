@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Point_de_choc</fullName>
+    <active>true</active>
+    <description>Zone détaillée (+ &quot;Orientation du choc&quot; obligatoire)</description>
+    <errorConditionFormula>ISPICKVAL(  PointChoc__c    , &quot;Zone détaillée&quot;)&amp;&amp; 
+ISPICKVAL(  OrientationChoc__c    , &quot;&quot;) &amp;&amp; 
+$User.ByPassValidationRules__c = false</errorConditionFormula>
+    <errorDisplayField>OrientationChoc__c</errorDisplayField>
+    <errorMessage>Vous devez renseigner le champ Orientation du choc</errorMessage>
+</ValidationRule>

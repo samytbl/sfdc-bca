@@ -1,0 +1,66 @@
+<aura:component controller="CaseController" implements="flexipage:availableForRecordHome,flexipage:availableForAllPageTypes,force:lightningQuickAction,lightning:actionOverride,force:hasRecordId">
+    
+    <!-- ===================== ATTRIBUTS ====================================== -->
+    
+    <aura:attribute name="recordId"  type="String" />
+    <aura:attribute name="listIds"   type="List" />
+    <aura:attribute name="numDos"    type="String" />
+    <aura:attribute name="documents"    type="Object[]" />
+    <aura:attribute name="codeQualification"    type="String" />
+    <aura:attribute name="myBool"    type="Boolean" default="true"/>
+    <aura:attribute name="method" type="String" default="GET" />
+    <aura:attribute name="url" type="String" />
+    <aura:attribute name="async" type="Boolean" default="true" />
+    <aura:attribute name="callbackMethod" type="Object" />
+    <!-- HANDLER -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+	
+    
+	<lightning:layout horizontalAlign="center" class="">
+  		<lightning:button  class='slds-button slds-button_brand slds-align_absolute-center' label="Get Files" title="Get Files" onclick="{! c.getDocuments }"/>      
+    </lightning:layout>   
+    <br/>
+
+    <aura:if isTrue="{!v.myBool}">
+        <!-- Iteration sur les documents -->
+        <div aura:id="docs" class="">
+            <aura:iteration items="{!v.documents}" var="doc" indexVar="indx">
+              <!--  <ui:outputURL aura:id="{!'doc'+indx}" label="{! doc.nomFichier}" title ="{!doc.nomFichier}" value="{! doc.externalUrl}" target="_blank"/> -->
+              <!--  <lightning:formattedUrl aura:id="{!'doc'+indx}" label="{! doc.nomFichier}" title ="{!doc.nomFichier}" value="{! doc.externalUrl}"  target="_blank" /> -->
+   				<div style="width:20rem">
+              <div class="slds-file slds-file_card slds-has-title">
+                <figure>
+                  <a href="{! doc.externalUrl}" class="slds-file__crop slds-file__crop_16-by-9" target="_blank">
+                 <!--   <span class="slds-assistive-text">Preview:</span>  
+                      <img src="{! doc.externalUrl}" alt="{! doc.nomFichier}" /> -->
+                      <span class="slds-file__icon slds-icon_container ">
+                          <lightning:icon class="slds-icon slds-icon-text-default" iconName="{! doc.FileTypeIconName}" size="xx-medium"/>
+                      </span>
+                  </a>
+                  <figcaption class="slds-file__title slds-file__title_card">
+                    <div class="slds-media slds-media_small slds-media_center">
+                      <div class="slds-media__figure slds-line-height_reset">
+                        <span class="slds-icon_container" title="Photo" aria-hidden="false">
+                          <span class="slds-icon_container ">
+                            <lightning:icon class="slds-icon slds-icon-text-default" iconName="{! doc.FileTypeIconName}" size="xx-medium"/>
+                          </span>
+                          <span class="slds-assistive-text">Photo</span>
+                        </span>
+                      </div>
+                      <div class="slds-media__body slds-align_absolute-center">
+                        <span class="slds-file__text slds-truncate " title="{!doc.nomFichier}">{! doc.nomFichier}</span>
+                      </div>
+                    </div>
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+                <br/>
+            </aura:iteration>
+        </div>
+        <aura:set attribute="else">
+            <div class="slds-align_absolute-center slds-text-heading_medium">Aucun document retrouvé !</div>
+        </aura:set>
+    </aura:if>
+    
+</aura:component>

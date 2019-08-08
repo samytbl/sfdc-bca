@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AdresseLieuExamen__c</fullName>
+    <description>LADRX1 + LADRX2 + LADRX3 + LADRX4</description>
+    <externalId>false</externalId>
+    <label>Adresse du lieu d&#39;examen</label>
+    <length>152</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

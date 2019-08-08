@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Point_Remarquable</fullName>
+    <fields>Name</fields>
+    <fields>Statut__c</fields>
+    <label>Point Remarquable</label>
+</CompactLayout>
