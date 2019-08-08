@@ -1,0 +1,801 @@
+<aura:component controller="LigneChiffrageController" implements="flexipage:availableForRecordHome,flexipage:availableForAllPageTypes,force:lightningQuickAction,lightning:actionOverride,force:hasRecordId">
+   <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+   <aura:handler event="aura:doneRendering" action="{!c.doneRendering}"/>
+   <aura:attribute name="isDoneRendering" type="Boolean" default="false"/>
+   <aura:attribute name="objInfo" type="account" default="{sobjectType : 'Account'}" />
+   <aura:attribute name="recordId"         type="String" />
+   <aura:attribute name="chiffrageId"      type="String" />
+   <aura:attribute name="myBool"           type="Boolean" default="true"/>
+   <aura:attribute name="mapDommageLignes" type="Object[]"/>
+   <aura:attribute name="deletedLignes"    type="String[]"/>
+   <aura:attribute name="options"          type="List" default="[]"/>
+   <aura:attribute name="listCodeActionOptions" type="List" default="[]"/>
+   <aura:attribute name="listCodeCoteOptions"   type="List" default="[]"/>
+   <aura:attribute name="selectedValue"    type="String" />
+   <aura:attribute name="updatedData"      type="Object[]"/>
+   <aura:attribute name="required"         type="Boolean" default="true"/>
+   <aura:iteration items="{!v.mapDommageLignes}" var="domligne" indexVar="indx">
+      <table class="slds-table slds-table_bordered slds-table_fixed-layout slds-table_resizable-cols" role="grid">
+         <thead>
+            <tr class="slds-line-height_reset">
+               <th aria-label="Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+                  <a id="{!'row-'+indx}" class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" onclick="{!c.showandhidetable}">
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate headertab" title="Name">LIGNE</span>
+                        <span aura:id="{!'arrowdown-row-'+indx}" id="{!'arrowdown-row-'+indx}" class="slds-icon_container slds-icon-utility-arrowdown bodytablevisible">
+                           <lightning:icon class="slds-float--left" iconName="utility:chevrondown" size="xx-small"/>
+                        </span>
+                        <span aura:id="{!'arrowup-row-'+indx}" id="{!'arrowup-row-'+indx}" class="slds-icon_container slds-icon-utility-arrowup bodytablenonvisible">
+                           <lightning:icon class="slds-float--left" iconName="utility:chevronup" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-540" max="1000" min="20"/>
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">DOM 1</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">IMP. NON IMPUTABLE</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate slds-text-align_center">
+                        <span class="slds-truncate" title="Dom 1">LIBELLÉ PIÈCES</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">CODES ACTION</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">CODES CÔTÉS</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">T1</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">T2</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">T3</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">TP</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">QTE</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">PRIX UNIT HT</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">TVA</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">ACL</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">REMISE</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+            </tr>
+         </thead>
+         <tbody aura:id="{!'bodytable-row-'+indx}" class="bodytablevisible" id="{!'bodytable-row-'+indx}">
+            <tr class="slds-hint-parent" rowIndex="{!'row-'+indx}">
+               <td role="gridcell">
+                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                     <span class="slds-icon_container slds-icon-utility-arrowdown headertab">
+                        <input rowIndex="0" type="radio" id="radio-0" value="radio-01" name="options" aria-labelledby="radio-button-label-01 column-group-header"/>
+                        <!-- <label class="slds-radio__label" for="radio-01" id="radio-button-label-01">
+                           <span class="slds-radio_faux"></span>
+                           <span class="slds-form-element__label slds-assistive-text">Select item 1</span>
+                           </label> -->
+                     </span>
+                     <span class="slds-truncate" title="Account Name">{!indx}</span>
+                  </div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="{!domligne.imputDom.NumeroChoc__c}">{!domligne.imputDom.NumeroChoc__c}</div>
+                  <!-- <div class="slds-form-element">
+                     <div class="slds-select_container">
+                        <ui:inputSelect aura:id="accCiv" class="slds-select selectop"  change="{!c.onPicklistChange}"/>
+                     </div>
+                  </div> -->
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="{!domligne.imputDom.NumeroChoc__c}">!domligne.imputDom.ImputabiliteChoc__c}</div>
+               </td>
+               <td role="gridcell">
+                  <lightning:input type="text" name="{!ligneChiff}" onblur="{!c.fieldUpdated}" maxlength="50" value="{!ligneChiff.Libelle__c}" aura:id="ligneField" variant="label-hidden"/>
+               </td>
+               <td role="gridcell">
+                  <!-- <lightning:input type="text" name="{!ligneChiff}" onblur="{!c.fieldUpdated}" maxlength="50" value="{!ligneChiff.Libelle__c}" aura:id="ligneField" variant="label-hidden"/> -->
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+            </tr>
+            <tr class="slds-hint-parent">
+               <td role="gridcell">
+                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                     <span class="slds-icon_container slds-icon-utility-arrowdown headertab">
+                        <input type="radio" id="radio-01" value="radio-01" name="options" aria-labelledby="radio-button-label-01 column-group-header"/>
+                        <!-- <label class="slds-radio__label" for="radio-01" id="radio-button-label-01">
+                           <span class="slds-radio_faux"></span>
+                           <span class="slds-form-element__label slds-assistive-text">Select item 1</span>
+                           </label> -->
+                     </span>
+                     <span class="slds-truncate" title="Account Name">1</span>
+                  </div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <br/>
+      <br/>
+      <table class="slds-table slds-table_bordered slds-table_fixed-layout slds-table_resizable-cols" role="grid">
+         <thead>
+            <tr class="slds-line-height_reset">
+               <th aria-label="Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col" colspan="9">
+                  <a id="{!'row2-'+indx}" style="color:black;" href="javascript:void(0);" role="button" onclick="{!c.showandhidetable}">
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate headertab" title="Name">SOUS-TOTAL DOM 1</span>
+                        <span aura:id="{!'arrowdown-row2-'+indx}" id="{!'arrowdown-row2-'+indx}"  class="slds-icon_container slds-icon-utility-arrowdown bodytablevisible">
+                           <lightning:icon class="slds-float--left" iconName="utility:chevrondown" size="xx-small"/>
+                        </span>
+                        <span aura:id="{!'arrowup-row2-'+indx}" id="{!'arrowup-row2-'+indx}"  class="slds-icon_container slds-icon-utility-arrowup bodytablenonvisible" >
+                           <lightning:icon class="slds-float--left" iconName="utility:chevronup" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">1.2</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable yellowheader" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">0.5</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable yellowheader" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">0</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable yellowheader" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">2</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable yellowheader" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">180€</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+               <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable yellowheader" scope="col">
+                  <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                     <span class="slds-assistive-text">Sort by: </span>
+                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                        <span class="slds-truncate" title="Dom 1">597€</span>
+                        <span class="slds-icon_container slds-icon-utility-arrowdown">
+                           <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                        </span>
+                     </div>
+                  </a>
+                  <div class="slds-resizable">
+                     <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                     <span class="slds-resizable__handle">
+                     <span class="slds-resizable__divider"></span>
+                     </span>
+                  </div>
+               </th>
+            </tr>
+         </thead>
+         <tbody aura:id="{!'bodytable-row2-'+indx}" class="bodytablevisible" id="{!'bodytable-row2-'+indx}">
+            <tr class="slds-hint-parent" rowIndex="row-0">
+               <td role="gridcell" colspan="9">
+                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                     <span class="slds-truncate" title="Account Name">Ecart non detaillé</span>
+                  </div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+               <td role="gridcell">
+                  <div class="slds-truncate" title="test">test</div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <br/>
+   </aura:iteration>
+   <!-- ##################### TOTAL TABLE 2 #################################### -->
+   <table class="slds-table slds-table_bordered slds-table_fixed-layout slds-table_resizable-cols alltotals" role="grid">
+      <thead>
+         <tr class="slds-line-height_reset">
+            <th aria-label="Name" aria-sort="none" class="slds-is-resizable slds-is-sortable alltotals" scope="col">
+               <a id="row-2" style="color:black;" href="javascript:void(0);" role="button" onclick="{!c.showandhidetable}">
+                  <span class="slds-assistive-text">Sort by: </span>
+                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                     <span class="slds-truncate headertab" title="Name">CONDITION RÉPARATEUR</span>
+                     <span class="slds-icon_container slds-icon-utility-arrowdown bodytablevisible">
+                        <lightning:icon class="slds-float--left" iconName="utility:chevrondown" size="xx-small"/>
+                     </span>
+                     <span class="slds-icon_container slds-icon-utility-arrowup bodytablenonvisible">
+                        <lightning:icon class="slds-float--left" iconName="utility:chevronup" size="xx-small"/>
+                     </span>
+                  </div>
+               </a>
+            </th>
+            <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable alltotals" scope="col">
+               <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                  <span class="slds-assistive-text">Sort by: </span>
+                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                     <span class="slds-truncate" title="Dom 1">T1</span>
+                     <span class="slds-icon_container slds-icon-utility-arrowdown">
+                        <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                     </span>
+                  </div>
+               </a>
+               <div class="slds-resizable">
+                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                  <span class="slds-resizable__handle">
+                  <span class="slds-resizable__divider"></span>
+                  </span>
+               </div>
+            </th>
+            <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable alltotals" scope="col">
+               <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                  <span class="slds-assistive-text">Sort by: </span>
+                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                     <span class="slds-truncate" title="Dom 1">T2</span>
+                     <span class="slds-icon_container slds-icon-utility-arrowdown">
+                        <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                     </span>
+                  </div>
+               </a>
+               <div class="slds-resizable">
+                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                  <span class="slds-resizable__handle">
+                  <span class="slds-resizable__divider"></span>
+                  </span>
+               </div>
+            </th>
+            <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable alltotals" scope="col">
+               <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                  <span class="slds-assistive-text">Sort by: </span>
+                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                     <span class="slds-truncate" title="Dom 1">T3</span>
+                     <span class="slds-icon_container slds-icon-utility-arrowdown">
+                        <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                     </span>
+                  </div>
+               </a>
+               <div class="slds-resizable">
+                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                  <span class="slds-resizable__handle">
+                  <span class="slds-resizable__divider"></span>
+                  </span>
+               </div>
+            </th>
+            <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable alltotals" scope="col">
+               <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                  <span class="slds-assistive-text">Sort by: </span>
+                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                     <span class="slds-truncate" title="Dom 1">TP</span>
+                     <span class="slds-icon_container slds-icon-utility-arrowdown">
+                        <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                     </span>
+                  </div>
+               </a>
+               <div class="slds-resizable">
+                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                  <span class="slds-resizable__handle">
+                  <span class="slds-resizable__divider"></span>
+                  </span>
+               </div>
+            </th>
+            <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable alltotals" scope="col">
+               <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                  <span class="slds-assistive-text">Sort by: </span>
+                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                     <span class="slds-truncate" title="Dom 1">ING</span>
+                     <span class="slds-icon_container slds-icon-utility-arrowdown">
+                        <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                     </span>
+                  </div>
+               </a>
+               <div class="slds-resizable">
+                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                  <span class="slds-resizable__handle">
+                  <span class="slds-resizable__divider"></span>
+                  </span>
+               </div>
+            </th>
+            <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable alltotals" scope="col" colspan="2">
+               <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                  <span class="slds-assistive-text">Sort by: </span>
+                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                     <span class="slds-truncate" title="Dom 1">TVA</span>
+                     <span class="slds-icon_container slds-icon-utility-arrowdown">
+                        <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                     </span>
+                  </div>
+               </a>
+               <div class="slds-resizable">
+                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                  <span class="slds-resizable__handle">
+                  <span class="slds-resizable__divider"></span>
+                  </span>
+               </div>
+            </th>
+            <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable alltotals" scope="col" colspan="3">
+               <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                  <span class="slds-assistive-text">Sort by: </span>
+                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                     <span class="slds-truncate" title="Dom 1">REMISE</span>
+                     <span class="slds-icon_container slds-icon-utility-arrowdown">
+                        <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                     </span>
+                  </div>
+               </a>
+               <div class="slds-resizable">
+                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                  <span class="slds-resizable__handle">
+                  <span class="slds-resizable__divider"></span>
+                  </span>
+               </div>
+            </th>
+            <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable alltotals" scope="col">
+               <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                  <span class="slds-assistive-text">Sort by: </span>
+                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                     <span class="slds-truncate" title="Dom 1">PROPRE COMPTE</span>
+                     <span class="slds-icon_container slds-icon-utility-arrowdown">
+                        <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                     </span>
+                  </div>
+               </a>
+               <div class="slds-resizable">
+                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                  <span class="slds-resizable__handle">
+                  <span class="slds-resizable__divider"></span>
+                  </span>
+               </div>
+            </th>
+            <th aria-label="Account Name" aria-sort="none" class="slds-is-resizable slds-is-sortable alltotals" scope="col">
+               <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);" role="button" >
+                  <span class="slds-assistive-text">Sort by: </span>
+                  <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                     <span class="slds-truncate" title="Dom 1">EXPLOITABLE</span>
+                     <span class="slds-icon_container slds-icon-utility-arrowdown">
+                        <lightning:icon class="slds-icon slds-icon-text-default slds-is-sortable__icon" iconName="utility:arrowdown" size="xx-small"/>
+                     </span>
+                  </div>
+               </a>
+               <div class="slds-resizable">
+                  <input type="range" aria-label="Account Name column width" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-541" max="1000" min="20" />
+                  <span class="slds-resizable__handle">
+                  <span class="slds-resizable__divider"></span>
+                  </span>
+               </div>
+            </th>
+         </tr>
+      </thead>
+      <tbody class="bodytablevisible">
+         <tr class="slds-hint-parent" rowIndex="row-0">
+            <td role="gridcell" class="alltotals">
+               <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                  <span class="slds-truncate" title="Account Name">ASSERCAR</span>
+               </div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+         </tr>
+         <tr class="slds-hint-parent" rowIndex="row-0">
+            <td role="gridcell" class="alltotals" colspan="6">
+               <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
+                  <span class="slds-truncate" title="Account Name">ASSERCAR</span>
+               </div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+            <td role="gridcell" class="alltotals">
+               <div class="slds-truncate" title="test">test</div>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</aura:component>

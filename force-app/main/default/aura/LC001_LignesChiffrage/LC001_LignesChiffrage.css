@@ -1,0 +1,33 @@
+.THIS .headertab{
+    margin-right: 10%;
+}
+
+.THIS tr{
+   border: solid 1px black;
+   word-wrap: break-word;
+}
+
+.THIS th{
+    word-wrap: break-word;
+ }
+
+ .THIS .bodytablevisible{
+    color: #514f4d;
+ }
+
+ .THIS .bodytablenonvisible{
+    display: none;
+}
+
+.THIS .space{
+    margin-top: 5%;
+}
+
+.THIS .alltotals{
+    border: solid 1px rgba(224, 229, 238, 1);
+    text-align: center;
+}
+
+.THIS .selectop { 
+    background-image: none !important;
+}
