@@ -11,8 +11,7 @@ pipeline {
       steps {
         echo 'Testing..'
         sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev'
-        echo '${env.BUILD_RESULT}'
-
+        slackSend color: "good", message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} was successful"
       }
     }
 
