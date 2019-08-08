@@ -16,8 +16,8 @@ pipeline {
 
     stage('Deploy with unit test') { 
       steps {
-        echo 'Testing..'
-        sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev'
+        echo 'Deploying..'
+        sh 'sfdx force:source:deploy -c -p force-app -u stoubal@salesforce.com.dev --testlevel RunLocalTests'
       }
     }
   }
