@@ -9,7 +9,7 @@ pipeline {
 
     stage('Unit Test') { 
       steps {
-        sh 'sfdx force:apex:test:run'
+        sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev'
       }
     }
   }
