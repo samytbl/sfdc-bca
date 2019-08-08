@@ -11,7 +11,7 @@ pipeline {
       steps {
         echo 'Testing..'
         sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev'
-        echo ${env.BUILD_RESULT}
+        echo '${env.BUILD_RESULT}'
 
       }
     }
