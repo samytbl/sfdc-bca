@@ -13,11 +13,8 @@ pipeline {
         echo 'Testing..'
         echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
         //sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev'
-        GIT_COMMIT_EMAIL = sh (
-          script: 'git --no-pager show -s --format=\'%ae\'',
-          returnStdout: true
-        ).trim()
-        echo "Git committer email: ${GIT_COMMIT_EMAIL}"
+        def output = sh returnStdout: true, script: 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev'
+        println output
       }
     }
   }
