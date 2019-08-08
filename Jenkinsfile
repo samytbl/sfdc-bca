@@ -11,14 +11,14 @@ pipeline {
       steps {
         echo 'Testing..'
         sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev'
-        slackSend color: "good", message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} was successful"
+        out.println("TEST GROOVY")
       }
     }
-    stage('Deploy with unit test') { 
-      steps {
-        echo 'Deploying..'
-        sh 'sfdx force:source:deploy -c -p force-app -u stoubal@salesforce.com.dev --testlevel RunLocalTests'
-      }
-    }
+    // stage('Deploy with unit test') { 
+    //   steps {
+    //     echo 'Deploying..'
+    //     sh 'sfdx force:source:deploy -c -p force-app -u stoubal@salesforce.com.dev --testlevel RunLocalTests'
+    //   }
+    // }
   }
 }
