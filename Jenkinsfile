@@ -14,7 +14,6 @@ pipeline {
         slackSend color: "good", message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} was successful"
       }
     }
-
     stage('Deploy with unit test') { 
       steps {
         echo 'Deploying..'
