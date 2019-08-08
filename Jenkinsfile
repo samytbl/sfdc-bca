@@ -12,6 +12,7 @@ pipeline {
       steps {
         echo 'Testing..'
         sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev'
+        echo currentBuild.result
       }
     }
   }
