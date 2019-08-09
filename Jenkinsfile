@@ -11,6 +11,7 @@ pipeline {
       steps {
         echo 'Testing..'
         slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        echo "'${scmvars.GIT_AUTHOR_NAME}'"
         sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev'
       }
     }
@@ -22,19 +23,12 @@ pipeline {
     //   }
     // }
   }
-  // post {
-  //     success {
-  //       slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-  //     }
-  //     failure {
-  //       slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-  //     }
-  //   }
   post {
-        always {
-	    /* Use slackNotifier.groovy from shared library and provide current build result as parameter */   
-            slackNotifier(currentBuild.currentResult)
-            cleanWs()
-        }
+      success {
+        slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+      }
+      failure {
+        slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+      }
     }
 }
