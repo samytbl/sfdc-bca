@@ -10,9 +10,8 @@ pipeline {
     stage('Run Unit Test') { 
       steps {
         echo 'Testing..'
-        out.println("TEST GROOVY")
+        slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
         sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev'
-        
       }
     }
     // stage('Deploy with unit test') { 
