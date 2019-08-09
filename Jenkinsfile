@@ -10,7 +10,7 @@ pipeline {
     stage('Run Unit Test') { 
       steps {
         echo 'Testing..'
-        echo "'${scmvars.GIT_AUTHOR_NAME}'"
+        echo '${scmvars.GIT_AUTHOR_NAME}'
         slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
         sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev'
       }
