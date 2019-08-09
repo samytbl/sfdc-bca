@@ -2,6 +2,9 @@ def getBuildUser() {
     return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
 }
 pipeline {
+  environment {
+    BUILD_USER = ''
+  }
   agent any
   stages {
     stage('Authorize sandbox access') { 
@@ -12,8 +15,11 @@ pipeline {
     }
     stage('Run Unit Test') { 
       steps {
+        script {
+          BUILD_USER = getBuildUser()
+        }
         echo 'Testing..'
-        slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) by Samy Toubal")
+        slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) by ${BUILD_USER}")
         sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev'
       }
     }
