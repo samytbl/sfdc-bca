@@ -22,7 +22,6 @@ pipeline {
         echo 'Testing...'
         slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) by ${BUILD_USER}")
         sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev > result'
-        lines = readFile('result').split("\r?\n")
       }
     }
     
