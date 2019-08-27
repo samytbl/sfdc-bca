@@ -20,8 +20,8 @@ pipeline {
           BUILD_USER = getBuildUser()
         }
         echo 'Testing...'
-        slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) by ${BUILD_USER}")
-        sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev > result'
+        //slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) by ${BUILD_USER}")
+        sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev'
       }
     }
     
@@ -34,10 +34,12 @@ pipeline {
   }
   post {
       success {
-        slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        echo 'SUCCESS'
+        //slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
       }
       failure {
-        slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        echo 'FAILURE'
+        //slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
       }
     }
 }
