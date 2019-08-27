@@ -1,4 +1,4 @@
-<aura:component controller="CaseController" implements="flexipage:availableForRecordHome,flexipage:availableForAllPageTypes,force:lightningQuickAction,lightning:actionOverride,force:hasRecordId">
+<aura:component controller="CaseController" implements="flexipage:availableForRecordHome,flexipage:availableForAllPageTypes,force:lightningQuickAction,lightning:actionOverride,force:hasRecordId,lightning:availableForFlowScreens">
     
     <!-- ===================== ATTRIBUTS ====================================== -->
     
@@ -24,39 +24,51 @@
     <aura:if isTrue="{!v.myBool}">
         <!-- Iteration sur les documents -->
         <div aura:id="docs" class="">
-            <aura:iteration items="{!v.documents}" var="doc" indexVar="indx">
-              <!--  <ui:outputURL aura:id="{!'doc'+indx}" label="{! doc.nomFichier}" title ="{!doc.nomFichier}" value="{! doc.externalUrl}" target="_blank"/> -->
-              <!--  <lightning:formattedUrl aura:id="{!'doc'+indx}" label="{! doc.nomFichier}" title ="{!doc.nomFichier}" value="{! doc.externalUrl}"  target="_blank" /> -->
-   				<div style="width:20rem">
-              <div class="slds-file slds-file_card slds-has-title">
-                <figure>
-                  <a href="{! doc.externalUrl}" class="slds-file__crop slds-file__crop_16-by-9" target="_blank">
-                 <!--   <span class="slds-assistive-text">Preview:</span>  
-                      <img src="{! doc.externalUrl}" alt="{! doc.nomFichier}" /> -->
-                      <span class="slds-file__icon slds-icon_container ">
-                          <lightning:icon class="slds-icon slds-icon-text-default" iconName="{! doc.FileTypeIconName}" size="xx-medium"/>
-                      </span>
-                  </a>
-                  <figcaption class="slds-file__title slds-file__title_card">
-                    <div class="slds-media slds-media_small slds-media_center">
-                      <div class="slds-media__figure slds-line-height_reset">
-                        <span class="slds-icon_container" title="Photo" aria-hidden="false">
-                          <span class="slds-icon_container ">
+         <!--   <lightning:carousel aura:id="bodyCarousel" disableAutoRefresh="true" disableAutoScroll="true" class="hideCarousel" >  -->
+                <aura:iteration items="{!v.documents}" var="doc" indexVar="indx">
+              <!--  <ui:outputURL aura:id="{!'doc'+indx}" label="{! doc.nomFichier}" title ="{!doc.nomFichier}" value="{! doc.externalUrl}" target="_blank"/> 
+                <lightning:formattedUrl aura:id="{!'doc'+indx}" label="{! doc.nomFichier}" title ="{!doc.nomFichier}" value="{! doc.externalUrl}"  target="_blank" /> -->
+				
+                <div style="width:20rem">
+                <div class="slds-file slds-file_card slds-has-title">
+                  <figure>
+                    <a href="{! doc.externalUrl}" class="slds-file__crop slds-file__crop_16-by-9" target="_blank">
+                      <span class="slds-assistive-text">Preview:</span>  
+                        <aura:if isTrue="{!doc.typeDocument == 'PHO'}">
+                            <img src="{! doc.externalUrl}" alt="{! doc.nomFichier}" />
+                            <aura:set attribute="else">
+                                <span class="slds-file__icon slds-icon_container ">
+                                    <lightning:icon class="slds-icon slds-icon-text-default" iconName="{! doc.FileTypeIconName}" size="xx-medium"/>
+                                </span>
+                            </aura:set>
+                        </aura:if>
+                     <!--   <span class="slds-file__icon slds-icon_container ">
                             <lightning:icon class="slds-icon slds-icon-text-default" iconName="{! doc.FileTypeIconName}" size="xx-medium"/>
+                        </span>-->
+                    </a>
+                  <!--  <figcaption class="slds-file__title slds-file__title_card">
+                      <div class="slds-media slds-media_small slds-media_center">
+                        <div class="slds-media__figure slds-line-height_reset">
+                          <span class="slds-icon_container" title="Photo" aria-hidden="false">
+                            <span class="slds-icon_container ">
+                              <lightning:icon class="slds-icon slds-icon-text-default" iconName="{! doc.FileTypeIconName}" size="x-small"/>
+                            </span>
+                            <span class="slds-assistive-text">Photo</span>
                           </span>
-                          <span class="slds-assistive-text">Photo</span>
-                        </span>
+                        </div>
+                        <div class="slds-media__body slds-align_absolute-center">
+                          <span class="slds-file__text slds-truncate " title="{!doc.nomFichier}">{! doc.nomFichier}</span>
+                        </div>
                       </div>
-                      <div class="slds-media__body slds-align_absolute-center">
-                        <span class="slds-file__text slds-truncate " title="{!doc.nomFichier}">{! doc.nomFichier}</span>
-                      </div>
-                    </div>
-                  </figcaption>
-                </figure>
+                    </figcaption> -->
+                  </figure>
+                </div>
               </div>
-            </div>
+                    
+                    
                 <br/>
             </aura:iteration>
+        <!--    </lightning:carousel>  -->
         </div>
         <aura:set attribute="else">
             <div class="slds-align_absolute-center slds-text-heading_medium">Aucun document retrouvé !</div>

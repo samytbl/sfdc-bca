@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MontantACLPieceHT__c</fullName>
+    <description>Montant HT des remises sur pièces
+[MONT_ABAT_PIECE_HT]</description>
+    <externalId>false</externalId>
+    <label>Montant HT d&#39;ACL sur pièce</label>
+    <precision>10</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

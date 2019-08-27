@@ -1,5 +1,5 @@
 <aura:component 
-	implements="flexipage:availableForRecordHome,flexipage:availableForAllPageTypes,force:lightningQuickAction,lightning:actionOverride,force:hasRecordId" >
+	implements="flexipage:availableForRecordHome,flexipage:availableForAllPageTypes,force:lightningQuickAction,lightning:actionOverride,force:hasRecordId,lightning:availableForFlowScreens" >
 	
     <!-- ===================== ATTRIBUTS ====================================== -->
     

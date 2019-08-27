@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionOverrides>
         <actionName>Accept</actionName>
         <type>Default</type>
@@ -47,7 +47,6 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>OrdreMission</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Numéro de l&#39;ordre de mission incrémenté par Salesforce</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>true</enableFeeds>
@@ -70,12 +69,12 @@
     <pluralLabel>Ordres de Mission</pluralLabel>
     <searchLayouts>
         <customTabListAdditionalFields>CirconstancesSinistre__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>GarantieMiseEnJeu__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields xsi:nil="true"/>
         <customTabListAdditionalFields>DateSinistre__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>TypeFranchise__c</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>CirconstancesSinistre__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>CodePostalLieuSinistre__c</lookupDialogsAdditionalFields>
-        <lookupDialogsAdditionalFields>GarantieMiseEnJeu__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields xsi:nil="true"/>
         <lookupDialogsAdditionalFields>VehiculeAExpertiser__c</lookupDialogsAdditionalFields>
         <massQuickActions>ActualiserMission_d_Expertise</massQuickActions>
         <searchFilterFields>NAME</searchFilterFields>
@@ -86,7 +85,7 @@
         <searchFilterFields>VehiculeAExpertiser__c</searchFilterFields>
         <searchResultsAdditionalFields>NumeroSinistre__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>DateSinistre__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>GarantieMiseEnJeu__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields xsi:nil="true"/>
         <searchResultsAdditionalFields>TypeFranchise__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>VehiculeAExpertiser__c</searchResultsAdditionalFields>
     </searchLayouts>

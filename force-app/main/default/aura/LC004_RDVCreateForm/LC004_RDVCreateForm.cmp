@@ -1,0 +1,12 @@
+<aura:component implements="flexipage:availableForRecordHome,flexipage:availableForAllPageTypes,force:lightningQuickAction,lightning:actionOverride,force:hasRecordId,lightning:availableForFlowScreens">
+	
+    <!-- ===================== ATTRIBUTS ====================================== -->
+    <aura:attribute name="recordId"  type="String" />
+    <aura:attribute name="disabled" type="Boolean" default="false" />
+    <aura:attribute name="saved" type="Boolean" default="false" />
+    <aura:attribute name="showSpinner" type="Boolean" default="true" />
+    <!-- HANDLER -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+   
+</aura:component>

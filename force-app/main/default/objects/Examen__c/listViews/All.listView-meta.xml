@@ -3,6 +3,10 @@
     <fullName>All</fullName>
     <columns>NAME</columns>
     <columns>Dossier__c</columns>
+    <columns>DateExamen__c</columns>
+    <columns>NatureExamen__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>OWNER.LAST_NAME</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

@@ -32,7 +32,7 @@ public class SM002_CaseTriggerHandlerTEST {
      //   doss.CommentairesLigne1__c = 'EXPERTISE A TITRE CONSERVATOIRE et d autres pour tester MISSION TERRAIN ou Choc avec animal ou CHASSE AU RECOURS ou RENDEZ VOUS LE 12/11/17 ou VEHICULE CALCINE '  ;
         doss.DateSinistre__c = Date.today() - 3 ;
         doss.ZonesChoc__c = '3;5' ;
-        doss.GarantieMiseEnJeu__c = 'R;T;N' ;
+    //    doss.GarantieMiseEnJeu__c = 'R;T;N' ;
         doss.TypeFranchise__c = 'N' ;
         doss.IndicateurReglementDirect__c = 'D' ;
         

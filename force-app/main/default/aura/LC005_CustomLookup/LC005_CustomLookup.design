@@ -1,0 +1,8 @@
+<design:component>
+	<design:attribute name="objectName" label="Nom de l'Objet" />
+    <design:attribute name="fieldName1" label="Nom API du Champ 1" />
+    <design:attribute name="fieldName2" label="Nom API du Champ 2" />
+    <design:attribute name="iconName" label="Nom d'icone " />
+    <design:attribute name="label" label="Recherche par Numéro de Mission BCA ou Numéro Sinistre" />
+    <design:attribute name="value" label="Id de l'enregistrement" />
+</design:component>

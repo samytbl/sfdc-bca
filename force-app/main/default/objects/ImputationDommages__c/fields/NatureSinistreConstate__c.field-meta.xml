@@ -13,104 +13,365 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Collision avec un véhicule</fullName>
+                <fullName>C1</fullName>
                 <default>false</default>
                 <label>Collision avec un véhicule</label>
             </value>
             <value>
-                <fullName>Collision avec plusieurs véhicule</fullName>
+                <fullName>C3</fullName>
                 <default>false</default>
                 <label>Collision avec plusieurs véhicule</label>
             </value>
             <value>
-                <fullName>Choc avec un corps fixe</fullName>
+                <fullName>C8</fullName>
                 <default>false</default>
                 <label>Choc avec un corps fixe</label>
             </value>
             <value>
-                <fullName>Collision avec un corps mobile</fullName>
+                <fullName>C9</fullName>
                 <default>false</default>
                 <label>Collision avec un corps mobile</label>
             </value>
             <value>
-                <fullName>Collision avec un piéton</fullName>
+                <fullName>C4</fullName>
                 <default>false</default>
                 <label>Collision avec un piéton</label>
             </value>
             <value>
-                <fullName>Collision avec un animal</fullName>
+                <fullName>C6</fullName>
                 <default>false</default>
                 <label>Collision avec un animal</label>
             </value>
             <value>
-                <fullName>Versement sans collision prélable</fullName>
+                <fullName>C90</fullName>
                 <default>false</default>
                 <label>Versement sans collision prélable</label>
             </value>
             <value>
-                <fullName>Choc entre composants d&#39;un même attelage</fullName>
+                <fullName>C91</fullName>
                 <default>false</default>
                 <label>Choc entre composants d&#39;un même attelage</label>
             </value>
             <value>
-                <fullName>Echouement sur rochers</fullName>
+                <fullName>C98</fullName>
                 <default>false</default>
                 <label>Echouement sur rochers</label>
             </value>
             <value>
-                <fullName>Collision avec une pièce mécanique</fullName>
+                <fullName>C5</fullName>
                 <default>false</default>
                 <label>Collision avec une pièce mécanique</label>
             </value>
             <value>
-                <fullName>Collision avec un bateau</fullName>
+                <fullName>C99</fullName>
                 <default>false</default>
                 <label>Collision avec un bateau</label>
+            </value>
+            <value>
+                <fullName>C2</fullName>
+                <default>false</default>
+                <label>Collision avec un véhicule, tiers non identifié</label>
+            </value>
+            <value>
+                <fullName>C7</fullName>
+                <default>false</default>
+                <label>Collision avec un animal non identifié</label>
+            </value>
+            <value>
+                <fullName>I1</fullName>
+                <default>false</default>
+                <label>Incendie, cause déterminée</label>
+            </value>
+            <value>
+                <fullName>I2</fullName>
+                <default>false</default>
+                <label>Incendie, cause non déterminée</label>
+            </value>
+            <value>
+                <fullName>I3</fullName>
+                <default>false</default>
+                <label>Dommage électrique</label>
+            </value>
+            <value>
+                <fullName>I4</fullName>
+                <default>false</default>
+                <label>Dommage électronique</label>
+            </value>
+            <value>
+                <fullName>N1</fullName>
+                <default>false</default>
+                <label>Tempête</label>
+            </value>
+            <value>
+                <fullName>N2</fullName>
+                <default>false</default>
+                <label>Chute de pierres</label>
+            </value>
+            <value>
+                <fullName>N3</fullName>
+                <default>false</default>
+                <label>Chute de la foudre</label>
+            </value>
+            <value>
+                <fullName>N4</fullName>
+                <default>false</default>
+                <label>Grêle</label>
+            </value>
+            <value>
+                <fullName>N5</fullName>
+                <default>false</default>
+                <label>Immersion</label>
+            </value>
+            <value>
+                <fullName>N6</fullName>
+                <default>false</default>
+                <label>Inondation / immersion</label>
+            </value>
+            <value>
+                <fullName>N8</fullName>
+                <default>false</default>
+                <label>Retombée de peinture ou de produit chimique</label>
+            </value>
+            <value>
+                <fullName>V1</fullName>
+                <default>false</default>
+                <label>Vandalisme</label>
+            </value>
+            <value>
+                <fullName>V2</fullName>
+                <default>false</default>
+                <label>Tentative de Vol partiel</label>
+            </value>
+            <value>
+                <fullName>V3</fullName>
+                <default>false</default>
+                <label>Vol partiel</label>
+            </value>
+            <value>
+                <fullName>V4</fullName>
+                <default>false</default>
+                <label>Tentative de vol</label>
+            </value>
+            <value>
+                <fullName>V5</fullName>
+                <default>false</default>
+                <label>Vol retrouvé avant délaissement</label>
+            </value>
+            <value>
+                <fullName>V6</fullName>
+                <default>false</default>
+                <label>Vol non retrouvé</label>
+            </value>
+            <value>
+                <fullName>V7</fullName>
+                <default>false</default>
+                <label>Vol retrouvé après délaissement</label>
+            </value>
+            <value>
+                <fullName>V8</fullName>
+                <default>false</default>
+                <label>Vol avec accident</label>
+            </value>
+            <value>
+                <fullName>Z2</fullName>
+                <default>false</default>
+                <label>Bris de glace</label>
+            </value>
+            <value>
+                <fullName>Z3</fullName>
+                <default>false</default>
+                <label>Absorption de corps étranger</label>
+            </value>
+            <value>
+                <fullName>Z4</fullName>
+                <default>false</default>
+                <label>Rupture / Défaillance mécanique</label>
+            </value>
+            <value>
+                <fullName>Z5</fullName>
+                <default>false</default>
+                <label>Dommage au pneumatique</label>
+            </value>
+            <value>
+                <fullName>Z6</fullName>
+                <default>false</default>
+                <label>Malfaçon</label>
+            </value>
+            <value>
+                <fullName>Z7</fullName>
+                <default>false</default>
+                <label>Panne mécanique</label>
+            </value>
+            <value>
+                <fullName>Z8</fullName>
+                <default>false</default>
+                <label>Chute d&#39;un objet sur le véhicule</label>
+            </value>
+            <value>
+                <fullName>Z9</fullName>
+                <default>false</default>
+                <label>Sans objet</label>
             </value>
         </valueSetDefinition>
         <valueSettings>
             <controllingFieldValue>Collision</controllingFieldValue>
-            <valueName>Collision avec un véhicule</valueName>
+            <valueName>C1</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Collision</controllingFieldValue>
-            <valueName>Collision avec plusieurs véhicule</valueName>
+            <valueName>C3</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Collision</controllingFieldValue>
-            <valueName>Choc avec un corps fixe</valueName>
+            <valueName>C8</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Collision</controllingFieldValue>
-            <valueName>Collision avec un corps mobile</valueName>
+            <valueName>C9</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Collision</controllingFieldValue>
-            <valueName>Collision avec un piéton</valueName>
+            <valueName>C4</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Collision</controllingFieldValue>
-            <valueName>Collision avec un animal</valueName>
+            <valueName>C6</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Collision</controllingFieldValue>
-            <valueName>Versement sans collision prélable</valueName>
+            <valueName>C90</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Collision</controllingFieldValue>
-            <valueName>Choc entre composants d&#39;un même attelage</valueName>
+            <valueName>C91</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Collision</controllingFieldValue>
-            <valueName>Echouement sur rochers</valueName>
+            <valueName>C98</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Collision</controllingFieldValue>
-            <valueName>Collision avec une pièce mécanique</valueName>
+            <valueName>C5</valueName>
         </valueSettings>
         <valueSettings>
             <controllingFieldValue>Collision</controllingFieldValue>
-            <valueName>Collision avec un bateau</valueName>
+            <valueName>C99</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Collision</controllingFieldValue>
+            <valueName>C2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Collision</controllingFieldValue>
+            <valueName>C7</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incendie</controllingFieldValue>
+            <valueName>I1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incendie</controllingFieldValue>
+            <valueName>I2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incendie</controllingFieldValue>
+            <valueName>I3</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Incendie</controllingFieldValue>
+            <valueName>I4</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vol</controllingFieldValue>
+            <valueName>V1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vol</controllingFieldValue>
+            <valueName>V2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vol</controllingFieldValue>
+            <valueName>V3</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vol</controllingFieldValue>
+            <valueName>V4</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vol</controllingFieldValue>
+            <valueName>V5</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vol</controllingFieldValue>
+            <valueName>V7</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vol</controllingFieldValue>
+            <valueName>V8</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autres</controllingFieldValue>
+            <valueName>N1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autres</controllingFieldValue>
+            <valueName>N2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autres</controllingFieldValue>
+            <valueName>N3</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autres</controllingFieldValue>
+            <valueName>N4</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autres</controllingFieldValue>
+            <valueName>N5</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autres</controllingFieldValue>
+            <valueName>N6</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autres</controllingFieldValue>
+            <valueName>N8</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autres</controllingFieldValue>
+            <valueName>V6</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autres</controllingFieldValue>
+            <valueName>Z2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autres</controllingFieldValue>
+            <valueName>Z3</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autres</controllingFieldValue>
+            <valueName>Z4</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autres</controllingFieldValue>
+            <valueName>Z5</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autres</controllingFieldValue>
+            <valueName>Z6</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autres</controllingFieldValue>
+            <valueName>Z7</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autres</controllingFieldValue>
+            <valueName>Z8</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autres</controllingFieldValue>
+            <valueName>Z9</valueName>
         </valueSettings>
     </valueSet>
 </CustomField>

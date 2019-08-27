@@ -19,13 +19,26 @@
                     
                     this.applyFileTypeIconNames( component, docs );
                     
+                    var cmpTarget = component.find('bodyCarousel');
+                    
+                    var isPhoto = false ;
                     for (var i = 0; i < docs.length; i++) {
                       /*  console.log('doc['+i+'] :' + docs[i]);*/
                         console.log('numDos : ' + docs[i].numDos);
                         console.log('codeQualification : ' + docs[i].codeQualification);
                         console.log('url : ' + docs[i].externalUrl); 
                         console.log('FileTypeIconName : ' + docs[i].FileTypeIconName);
+                        
+                        if(docs[i].typeDocument === 'PHO' && !isPhoto){
+                           isPhoto = true ;
+                           console.log('isPhoto : ' + isPhoto);
+                        }
                         console.log('################################## ');
+                    }
+                    
+                    if(isPhoto){
+                       $A.util.removeClass(cmpTarget, 'hideCarousel');
+                       console.log('Carousel not hidden ');
                     }
                 }else{
                     component.set("v.myBool","false");

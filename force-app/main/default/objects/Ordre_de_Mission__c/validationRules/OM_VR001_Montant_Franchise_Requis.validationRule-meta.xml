@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fullName>OM_VR001_Montant_Franchise_Requis</fullName>
     <active>true</active>
     <description>Montant franchise doit être renseigné si type de franchise égal à &quot;Montant fixe&quot;, &quot;Forfait et complément proportionnel&quot;, ou &quot;Proportionnelle avec limite&quot;.</description>

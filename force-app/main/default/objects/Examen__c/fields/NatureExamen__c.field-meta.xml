@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NatureExamen__c</fullName>
+    <description>Code donnant la nature de l&#39;intervention saisie lors de l&#39;examen [EXAMEN.COD_NAT_INTERVENT]</description>
+    <externalId>false</externalId>
+    <label>Nature de l&#39;examen</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>0</fullName>
+                <default>false</default>
+                <label>BJJ</label>
+            </value>
+            <value>
+                <fullName>1</fullName>
+                <default>false</default>
+                <label>Vu, avant travaux</label>
+            </value>
+            <value>
+                <fullName>2</fullName>
+                <default>false</default>
+                <label>Vu, pendant travaux</label>
+            </value>
+            <value>
+                <fullName>3</fullName>
+                <default>false</default>
+                <label>Sur marbre</label>
+            </value>
+            <value>
+                <fullName>4</fullName>
+                <default>false</default>
+                <label>Vu, après travaux</label>
+            </value>
+            <value>
+                <fullName>5</fullName>
+                <default>false</default>
+                <label>Absent au rendez-vous</label>
+            </value>
+            <value>
+                <fullName>6</fullName>
+                <default>false</default>
+                <label>Non Vu, Dossier examiné</label>
+            </value>
+            <value>
+                <fullName>7</fullName>
+                <default>false</default>
+                <label>Non Vu, Vu pièces remplacées</label>
+            </value>
+            <value>
+                <fullName>8</fullName>
+                <default>false</default>
+                <label>Non Vu, Avis sur pièces</label>
+            </value>
+            <value>
+                <fullName>9</fullName>
+                <default>false</default>
+                <label>Non Vu, Traité à distance (EAD)</label>
+            </value>
+            <value>
+                <fullName>A</fullName>
+                <default>false</default>
+                <label>Non Vu, Volé Non Retrouvé (VNR)</label>
+            </value>
+            <value>
+                <fullName>B</fullName>
+                <default>false</default>
+                <label>Non Vu, Préparation préalable</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

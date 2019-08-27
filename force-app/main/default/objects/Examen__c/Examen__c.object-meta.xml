@@ -45,7 +45,7 @@
         <type>Flexipage</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>MissionExpertise</compactLayoutAssignment>
+    <compactLayoutAssignment>Examen</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
@@ -57,7 +57,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <gender>Feminine</gender>
+    <gender>Masculine</gender>
     <label>Examen</label>
     <nameField>
         <displayFormat>EX-{00000}</displayFormat>
@@ -68,5 +68,6 @@
     <pluralLabel>Examens</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
     <visibility>Public</visibility>
 </CustomObject>

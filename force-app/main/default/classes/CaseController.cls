@@ -42,7 +42,7 @@ public class CaseController {
                               
       //     for(Case  d: listDossiers){
            if( String.isNotEmpty(String.valueOf(doss.NumDossierGE__c))){
-               //    HttpRequest request = EM002_Case.getDocNumFiles(param_setting, String.valueOf(doss.NumDossierGE__c) );
+                //   HttpRequest request = EM002_Case.getDocNumFiles(param_setting, String.valueOf(doss.NumDossierGE__c) );
                   HttpRequest request = EM002_Case.getDocNumFiles(param_setting, '26345365' );
                   system.debug('ADBS request     : ' + request);
                   
@@ -83,7 +83,7 @@ public class CaseController {
                       }
                       
                   }else if(respoDocNum != null && respoDocNum.getStatusCode() != 200){
-                      system.debug('Aucun véhicule trouvé !!! ');
+                      system.debug('Aucun fichier trouvé !!! ');
                   }//end   
        //    }
                   
@@ -123,7 +123,6 @@ public class CaseController {
         @AuraEnabled public String url ;
         @AuraEnabled public String typeDocument ;
         @AuraEnabled public String externalUrl ;
-        
     }
     
 }

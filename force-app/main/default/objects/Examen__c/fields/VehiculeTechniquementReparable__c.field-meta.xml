@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VehiculeTechniquementReparable__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indique si le véhicule est techniquement réparable ou non [EXPERTISE.IND_VEH_TECH_REPAR]</description>
+    <externalId>false</externalId>
+    <label>Véhicule techniquement réparable</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

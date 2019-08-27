@@ -3,7 +3,7 @@
     <fullName>Localite__c</fullName>
     <externalId>false</externalId>
     <label>Localité</label>
-    <length>27</length>
+    <length>38</length>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

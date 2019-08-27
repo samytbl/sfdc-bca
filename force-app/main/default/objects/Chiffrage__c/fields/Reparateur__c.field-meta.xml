@@ -2,12 +2,20 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Reparateur__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
+    <description>Code intervenant du réparateur 
+[COD_INTERV_REP]</description>
     <externalId>false</externalId>
     <label>Réparateur</label>
     <lookupFilter>
         <active>true</active>
+        <booleanFilter>1 OR 2</booleanFilter>
         <filterItems>
             <field>Account.EstUnReparateur__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <filterItems>
+            <field>Account.EstUnReparateurDePassage__c</field>
             <operation>equals</operation>
             <value>True</value>
         </filterItems>

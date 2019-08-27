@@ -12,11 +12,12 @@ global with sharing class WS001_Edi {
             createOM(record);            
             processed = true;
         }catch(Exception e){
+            System.debug('Error during processing the record : ' + e.getStackTraceString());
             Database.rollback(sp);
-            response = new EdiResponse(record.referenceId, false, e.getMessage() + ' - ' + e.getStackTraceString());                    
+            response = new EdiResponse(false, e.getMessage() + ' - ' + e.getStackTraceString());                    
         }
         if(processed){
-            response = new EdiResponse(record.referenceId, true, null); 
+            response = new EdiResponse(true, null); 
         } 
         return response;
     }
@@ -38,7 +39,7 @@ global with sharing class WS001_Edi {
         emetteur.init(om, clientAssureur);
         Account emetteurSO = emetteur.save();   
         gestionnaireDossierEmetteur.init(emetteurSO);
-        Contact gestionnaireDossierEmetteurSO = gestionnaireDossierEmetteur.save();    
+        Contact gestionnaireDossierEmetteurSO = gestionnaireDossierEmetteur.save(); 
         Account leseSO = lese.save();
        
         reparateur.init(lieuExamen);
@@ -46,22 +47,14 @@ global with sharing class WS001_Edi {
         if(lieuExamen.isTypeReparateur()){
             reparateurSO = reparateur.save();
         }
-        
+                
         Account tiersSo = null;
         if(String.isNotEmpty(tiers.Name)){
             tiersSo = tiers.save();
         }
-        User conseillerClientSo = record.conseillerClient.find();
-        User expertSo = record.expert.find();
-        Account uniteExpertSo = record.uniteExpert.find();
-        Account uscSo = record.usc.find();
-        
+                
         dossier.init(om, 
-                     clientAssureur, 
-                     conseillerClientSo,
-                     expertSo,
-                     uniteExpertSo,
-                     uscSo,
+                     clientAssureur,                      
                      emetteurSO,                     
                      gestionnaireDossierEmetteurSO, 
                      leseSO, 
@@ -72,6 +65,10 @@ global with sharing class WS001_Edi {
         vehiculeOM.init(dossierSO, leseSO);
         vehiculeOM.save();
         
+        RDV rdv = new RDV(); 
+        rdv.init(lieuExamen, dossierSO, reparateurSO, leseSo);
+        WorkOrder rdvSo = rdv.save();
+        
         //if(true) throw new  MathException('Reviser les maths'); 
         om.init(dossierSO); 
         om.save();
@@ -80,13 +77,8 @@ global with sharing class WS001_Edi {
     
     global class EdiRequest {
         
-        global String referenceId;
         global OM om;
         global Dossier dossier;
-        global UniteExpert uniteExpert;
-        global USC usc;
-        global ConseillerClient conseillerClient;
-        global Expert expert;
         global Lese lese;
         global ClientAssureur clientAssureur;
         global Emetteur emetteur;
@@ -98,11 +90,9 @@ global with sharing class WS001_Edi {
     }    
     
     global class EdiResponse {
-        global String referenceId;
         global Boolean success;
         global String message;
-        global EdiResponse(String referenceId, Boolean success, String message){
-            this.referenceId = referenceId;
+        global EdiResponse(Boolean success, String message){
             this.success = success;
             this.message = message;
         }
@@ -114,49 +104,34 @@ global with sharing class WS001_Edi {
             return String.valueOf(this).substring(0,String.valueOf(this).indexOf(':'));
         }
     }   
-    
-    global virtual class UserBCA extends DataObject{
         
-        global Integer CodeIntervGE;
-        
-        public User find(){ 
-			User so = null;
-			if(CodeIntervGE != null){
-				 List<User> result = [SELECT Id FROM User WHERE CodeIntervGE__c=:this.CodeIntervGE];             
-				if(!result.isEmpty()){
-					so = result[0];   
-				}
-			}           
-            return so;
-        }
-        
-    }
-    
-    global class ConseillerClient extends UserBCA { }    
-    global class Expert extends UserBCA { }
-    
     global virtual class AccountBCA extends DataObject{
         
-        private Integer CodeIntervGE;        
-        global String RecordTypeId;
-        global String Phone;
+        global Integer CodeIntervGE;        
+        global String RecordTypeId;  
+        global String Titre; 
         global String Name;
         global String BillingStreet;        
         global String BillingPostalCode;
         global String BillingCity;
         global String BillingCountry;
-        global String Titre; 
+        global String Phone;
         
         public virtual Account find(){ 
             Account so = findByBusinessKey();
-            if(so == null && CodeIntervGE != null){
+            if(so == null && this.CodeIntervGE != null){
                 so = findByLegacyCode();
             }
             return so;
         }
         
         public virtual Account findByBusinessKey(){ 
-            List<Account> result = [SELECT Id FROM Account WHERE RecordTypeId=:this.RecordTypeId AND (Phone=:this.Phone or Name = :this.Name)]; 
+            List<Account> result = null;
+            if(!String.isEmpty(this.Phone)){                
+                result = [SELECT Id, CodeIntervGE__c, ActeurPassage__c, Titre__c, Name, Phone, BillingStreet, BillingPostalCode, BillingCity, BillingCountry FROM Account WHERE RecordTypeId=:this.RecordTypeId AND (Phone=:this.Phone OR Name=:this.Name)]; 
+            }else{
+                result = [SELECT Id, CodeIntervGE__c, ActeurPassage__c, Titre__c, Name, Phone, BillingStreet, BillingPostalCode, BillingCity, BillingCountry FROM Account WHERE RecordTypeId=:this.RecordTypeId AND Name=:this.Name]; 
+            }
             Account so = null;
             if(!result.isEmpty()){
                 so = result[0];   
@@ -165,7 +140,7 @@ global with sharing class WS001_Edi {
         }
         
         public Account findByLegacyCode(){ 
-            List<Account> result = [SELECT Id FROM Account WHERE RecordTypeId=:this.RecordTypeId AND CodeIntervGE__c=:this.CodeIntervGE]; 
+            List<Account> result = [SELECT Id, CodeIntervGE__c, ActeurPassage__c, Titre__c, Name, Phone, BillingStreet, BillingPostalCode, BillingCity, BillingCountry FROM Account WHERE RecordTypeId=:this.RecordTypeId AND CodeIntervGE__c=:this.CodeIntervGE]; 
             Account so = null;
             if(!result.isEmpty()){
                 so = result[0];   
@@ -178,12 +153,18 @@ global with sharing class WS001_Edi {
             so = find();
             if(so == null){
                 so = createSO();
+                System.debug('Trying New <' + this.className() + '> created (' + so + ')');
                 insert so;
                 System.debug('New <' + this.className() + '> created (' + so + ')');
-            }else{           
-                updateSO(so);          
-                update so;
-                System.debug('Existing <' + this.className() + '> updated (' + so + ')');
+            }else{ 
+                if(so.ActeurPassage__c == true){
+                    updateSO(so);          
+                    update so;
+                    System.debug('Existing <' + this.className() + '> updated (' + so + ')');
+                }else{
+                    //For now we cannot update the referentiel
+                }
+               
             }  
             
             return so;
@@ -193,6 +174,7 @@ global with sharing class WS001_Edi {
             Account so = new Account();
             updateSO(so);
             so.RecordTypeId = this.RecordTypeId;
+            so.ActeurPassage__c = true;
             return so;
         }
         public virtual void updateSO(Account so){
@@ -211,6 +193,20 @@ global with sharing class WS001_Edi {
         }
     }
     global virtual class PersonalAccountBCA extends AccountBCA {
+        
+        public virtual override Account findByBusinessKey(){ 
+            List<Account> result = null;
+            if(!String.isEmpty(this.Phone)){                
+                result = [SELECT Id, CodeIntervGE__c, ActeurPassage__c, Titre__c, Name, Phone, BillingStreet, BillingPostalCode, BillingCity, BillingCountry, PersonContactId FROM Account WHERE RecordTypeId=:this.RecordTypeId AND (Phone=:this.Phone OR LastName=:this.Name)]; 
+            }else{
+                result = [SELECT Id, CodeIntervGE__c, ActeurPassage__c, Titre__c, Name, Phone, BillingStreet, BillingPostalCode, BillingCity, BillingCountry, PersonContactId FROM Account WHERE RecordTypeId=:this.RecordTypeId AND LastName=:this.Name]; 
+            }
+            Account so = null;
+            if(!result.isEmpty()){
+                so = result[0];   
+            }
+            return so;
+        }
                
         public virtual override void updateSO(Account so){
             super.updateCommonSO(so);
@@ -233,8 +229,14 @@ global with sharing class WS001_Edi {
         }
         
         public virtual Contact findByBusinessKey(){ 
-            List<Contact> result = [SELECT Id FROM Contact WHERE RecordTypeId=:this.RecordTypeId AND (Phone=:this.Phone)]; 
             Contact so = null;
+            List<Contact> result = null;
+            if(!String.isEmpty(this.Phone)){                
+                result = [SELECT Id, CodeIntervGE__c, ActeurPassage__c FROM Contact WHERE RecordTypeId=:this.RecordTypeId AND (Phone=:this.Phone OR (LastName=:this.LastName AND FirstName=:this.FirstName)) ]; 
+            } else {
+                result = [SELECT Id, CodeIntervGE__c, ActeurPassage__c FROM Contact WHERE RecordTypeId=:this.RecordTypeId AND LastName=:this.LastName AND FirstName=:this.FirstName]; 
+            }
+
             if(!result.isEmpty()){
                 so = result[0];   
             }
@@ -242,7 +244,7 @@ global with sharing class WS001_Edi {
         }
         
         public Contact findByLegacyCode(){ 
-            List<Contact> result = [SELECT Id FROM Contact WHERE RecordTypeId=:this.RecordTypeId AND CodeIntervGE__c=:this.CodeIntervGE]; 
+            List<Contact> result = [SELECT Id, CodeIntervGE__c, ActeurPassage__c FROM Contact WHERE RecordTypeId=:this.RecordTypeId AND CodeIntervGE__c=:this.CodeIntervGE]; 
             Contact so = null;
             if(!result.isEmpty()){
                 so = result[0];   
@@ -257,11 +259,15 @@ global with sharing class WS001_Edi {
                 so = createSO();
                 insert so;
                 System.debug('New <' + this.className() + '> created (' + so + ')');
-            }else{           
-                updateSO(so);          
-                update so;
-                System.debug('Existing <' + this.className() + '> updated (' + so + ')');
-            }  
+            }else{       
+                if(so.ActeurPassage__c == true){
+                    updateSO(so);          
+                    update so;
+                    System.debug('Existing <' + this.className() + '> updated (' + so + ')');
+                }else{
+                    //For now we cannot update the referentiel
+                }                
+            } 
             
             return so;
         }
@@ -270,6 +276,7 @@ global with sharing class WS001_Edi {
             Contact so = new Contact();
             updateSO(so);
             so.RecordTypeId = this.RecordTypeId;
+            so.ActeurPassage__c = true;
             return so;
         }
         public virtual void updateSO(Contact so){
@@ -316,6 +323,88 @@ global with sharing class WS001_Edi {
         }
     }
     
+    global virtual class WorkOrderBCA extends DataObject{  
+                        
+        public virtual WorkOrder save(){
+            WorkOrder so = find();
+            if(so == null){
+                so = createSO();
+                insert so;
+                System.debug('New <' + this.className() + '> created (' + so + ')');
+            }else{           
+                updateSO(so);          
+                update so;
+                System.debug('Existing <' + this.className() + '> updated (' + so + ')');
+            }           
+            return so;
+        }
+        
+        public virtual WorkOrder find(){             
+            return null;
+        }
+        
+        public virtual WorkOrder createSO(){
+            WorkOrder so = new WorkOrder();            
+            updateSO(so);
+            return so;
+        }
+        public virtual void updateSO(WorkOrder so){
+                
+        }
+    }
+    global virtual class RDV extends WorkOrderBCA{
+        global LieuExamen lieuExamen;
+        Case dossier;
+        Account reparateur;
+        Account lese;
+        
+        public void init(LieuExamen lieuExamen, Case dossier, Account reparateur, Account lese){
+            this.lieuExamen = lieuExamen;
+            this.dossier = dossier;
+            this.reparateur = reparateur;
+            this.lese = lese;
+       }
+        
+        public override virtual void updateSO(WorkOrder so){
+            so.CaseId = dossier.Id;
+            so.TypeLieuRDV__c = lieuExamen.CodeLieuExamen;
+            so.TECH_RDVInitial__c = true;
+            if(lieuExamen.isTypeReparateur()){                
+                updateFromAccountSO(so, reparateur);
+            }
+            else if(lieuExamen.isTypeLese()){
+                updateFromAccountSO(so, lese);
+            }else{
+                so.TitreLieuRDV__c = lieuExamen.Titre;   
+                so.NomRDV__c = lieuExamen.Name;
+                so.Street = lieuExamen.BillingStreet;                    
+                so.PostalCode = lieuExamen.BillingPostalCode;            
+                so.City = lieuExamen.BillingCity;   
+                so.Country = lieuExamen.BillingCountry;
+               so.DateRDV__c = lieuExamen.DateDepotVehiculeExamen;
+                so.TelephoneLieu__c = lieuExamen.Phone;
+                so.ActeurPassage__c = true;
+            }
+        }
+        private void updateFromAccountSO(WorkOrder so, Account account){
+            so.AccountId = account.id;
+            so.TitreLieuRDV__c = account.Titre__c;  
+            so.NomRDV__c = account.Name;
+            so.CodeIntervGE__c = account.CodeIntervGE__c;
+            so.ActeurPassage__c = account.ActeurPassage__c;
+            so.Street = account.BillingStreet;                    
+            so.PostalCode = account.BillingPostalCode;            
+            so.City = account.BillingCity;   
+            so.Country = account.BillingCountry;  
+            so.TelephoneLieu__c = account.Phone;
+        }
+        
+        public override String className(){
+            return 'RDV';
+        }
+        
+    }
+    
     global class ClientAssureur extends AccountBCA{
         
         global String CodeSociete;    
@@ -328,17 +417,7 @@ global with sharing class WS001_Edi {
         }
         
     }
-    global class USC extends AccountBCA {
-        public override Account findByBusinessKey(){
-            return null;
-        }
-    }
-    global class UniteExpert extends AccountBCA {
-        public override Account findByBusinessKey(){
-            return null;
-        }
-    }
-    
+       
     global class Emetteur extends AccountBCA{        
         global String TypeEmetteur;
         global String Fax;
@@ -363,7 +442,7 @@ global with sharing class WS001_Edi {
             Account so = null;
             if(om.NumeroSinistre != null && om.NumeroSinistre.length() >= 6){
                 String ugsCode = om.NumeroSinistre.substring(om.NumeroSinistre.length() - 6, om.NumeroSinistre.length() - 3);
-                List<Account> result = [SELECT Id FROM Account WHERE RecordTypeId=:this.RecordTypeId AND MotCle__c=:ugsCode];                 
+                List<Account> result = [SELECT Id, CodeIntervGE__c, ActeurPassage__c, Titre__c, Name, Phone, BillingStreet, BillingPostalCode, BillingCity, BillingCountry FROM Account WHERE RecordTypeId=:this.RecordTypeId AND MotCle__c=:ugsCode];                 
                 if(!result.isEmpty()){
                     so = result[0];   
                 }
@@ -400,21 +479,14 @@ global with sharing class WS001_Edi {
             return 'GestionnaireDossierEmetteur';
         }
     }
+    
+    
     global class Lese extends PersonalAccountBCA {
         global boolean AssureProprietaireVehicule;
         global String NPoliceAssure;
         global String AutreTelephone;
-        global String RecordTypeId;
         
-        public override Account findByBusinessKey(){ 
-            List<Account> result = [SELECT Id, PersonContactId FROM Account WHERE RecordTypeId=:this.RecordTypeId AND (Phone = :this.Phone OR AutreTelephone__c = :this.AutreTelephone)]; 
-            Account so = null;
-            if(!result.isEmpty()){
-                so = result[0];   
-            }
-            return so;
-        }
-        
+       
         public override void updateSO(Account so){
             super.updateSO(so);
             so.AssureProprietaireVehicule__c = this.AssureProprietaireVehicule;
@@ -446,16 +518,20 @@ global with sharing class WS001_Edi {
     
     global class LieuExamen extends AccountBCA{  
         global String CodeLieuExamen;
-		global Integer CodeBCALieuExamen;
+        global Integer CodeBCALieuExamen;
+        global Date DateDepotVehiculeExamen;
        
         public boolean isTypeReparateur(){
-            return 'R'.equals(CodeLieuExamen);
+            return 'R'.equals(this.CodeLieuExamen);
+        }
+        public boolean isTypeLese(){
+            return 'L'.equals(this.CodeLieuExamen);
         }
         
     }
     
     global class Reparateur extends AccountBCA {  
-        
+        global Integer CodeReparateur;
         global LieuExamen lieuExamen;       
         
         public void init(LieuExamen lieuExamen){
@@ -467,19 +543,30 @@ global with sharing class WS001_Edi {
             this.BillingCountry = lieuExamen.BillingCountry;
             this.Titre = lieuExamen.Titre;
         }
-        public override Account findByBusinessKey(){ 
-            List<Account> result = [SELECT Id FROM Account WHERE RecordTypeId=:this.RecordTypeId AND Phone=:this.Phone AND EstUnReparateur__c=true AND EstUnReparateurDePassage__c=true]; 
+        
+        public override virtual Account findByBusinessKey(){ 
+            List<Account> result = null;
+            if(!String.isEmpty(this.Phone)){                
+                result = [SELECT Id, CodeIntervGE__c, ActeurPassage__c, Titre__c, Name, Phone, BillingStreet, BillingPostalCode, BillingCity, BillingCountry FROM Account WHERE RecordTypeId=:this.RecordTypeId AND (Phone=:this.Phone OR Name=:this.Name) AND EstUnReparateur__c=true]; 
+            }else{
+                result = [SELECT Id, CodeIntervGE__c, ActeurPassage__c, Titre__c, Name, Phone, BillingStreet, BillingPostalCode, BillingCity, BillingCountry FROM Account WHERE RecordTypeId=:this.RecordTypeId AND Name=:this.Name AND EstUnReparateur__c=true]; 
+            }
             Account so = null;
             if(!result.isEmpty()){
                 so = result[0];   
             }
             return so;
         }
+        
         public override Account createSO(){
             Account so = super.createSO();              
             so.EstUnReparateur__c = true;
-            so.EstUnReparateurDePassage__c = true;
             return so;
+        }
+        
+        public override void updateSO(Account so){
+            super.updateSO(so);          
+            so.CodeReparateur__c = this.CodeReparateur;            
         }
         
     }
@@ -606,7 +693,7 @@ global with sharing class WS001_Edi {
         global Date DateDepotVehiculeExamen;
         global String DirectivesParticulieres ;
         global String CopieConstatAmiable     ;
-        global String AutresPiecesAdressees   ;
+        global String AutresPiecesAdressees;
         global Integer FaxEmetteur;
         global boolean RapportPapierNecessaire;
         global String NumeroMissionBCA;
@@ -624,7 +711,9 @@ global with sharing class WS001_Edi {
         global Integer PuissanceReelle;
         global Integer TauxPriseEnCharge;
         global String InfoConstat;
+        global String AutreTelephoneLese;
         global String Commentaires;
+        global Integer CodeReparateur;
         global Date DateTarif;
         global Double TarifT1;
         global Double TarifT2;
@@ -703,7 +792,7 @@ global with sharing class WS001_Edi {
             so.LocaliteLese__c = this.LocaliteLese;
             so.PaysLese__c = this.PaysLese;
             so.TelephoneLese__c = this.TelephoneLese;
- 			so.LibelleMarqueVehiculeAssure__c = this.LibelleMarqueVehiculeAssure;
+            so.LibelleMarqueVehiculeAssure__c = this.LibelleMarqueVehiculeAssure;
             so.LibelleModeleVehiculeAssure__c = this.LibelleModeleVehiculeAssure;
             so.ImmatriculationVehiculeAssure__c = this.ImmatriculationVehiculeAssure;
             so.NumeroSerieVehiculeAssure__c = this.NumeroSerieVehiculeAssure;
@@ -743,7 +832,7 @@ global with sharing class WS001_Edi {
             so.TVAPriseEnChargeParAssureur__c = this.TVAPriseEnChargeParAssureur;
             so.SituationMaterielExpertiser__c = this.SituationMaterielExpertiser;
             so.CodeLieuExamen__c = this.CodeLieuExamen;
-            //so.TitreExamen__c = this.TitreExamen;
+            so.TitreExamen__c = this.TitreExamen;
             so.NomExamen__c = this.NomExamen;
             so.AdresseLieuExamen__c = this.AdresseLieuExamen;
             so.CodePostalLieuExamen__c = this.CodePostalLieuExamen;
@@ -770,7 +859,9 @@ global with sharing class WS001_Edi {
             so.PuissanceReelle__c = this.PuissanceReelle;
             so.TauxPriseEnCharge__c = this.TauxPriseEnCharge;
             so.InfoConstat__c = this.InfoConstat;
-            //so.Commentaires__c = this.Commentaires;
+            so.CodeReparateur__c = this.CodeReparateur;
+            so.Commentaires__c = this.Commentaires;
+            so.AutreTelephoneLese__c = this.AutreTelephoneLese;
             so.DateTarif__c = this.DateTarif;
             so.TarifT1__c = this.TarifT1;
             so.TarifT2__c = this.TarifT2;
@@ -798,14 +889,10 @@ global with sharing class WS001_Edi {
     
     global class Dossier extends DataObject {
         
-        private Integer NumDossierGE;
+        global Integer NumDossierGE;
         global String RecordTypeId;
         global OM om;
         global ClientAssureur clientAssureur; 
-        global User conseillerClient;
-        global User expert;
-        global Account uniteExpert;
-        global Account usc;
         global Account emetteur; 
         global Contact gestionnaireDossierEmetteur;
         global Account lese;
@@ -814,20 +901,12 @@ global with sharing class WS001_Edi {
         
         global void init(OM om, 
                          ClientAssureur clientAssureur, 
-                         User conseillerClient,
-                         User expert,
-                         Account uniteExpert,
-                         Account usc,
                          Account emetteur, 
                          Contact gestionnaireDossierEmetteur, 
                          Account lese, 
                          Account reparateur, 
                          Account tiers){
-            this.om = om;
-            this.conseillerClient = conseillerClient;
-            this.expert = expert;
-            this.uniteExpert = uniteExpert;
-            this.usc = usc;                 
+            this.om = om;             
             this.clientAssureur = clientAssureur;
             this.emetteur = emetteur;
             this.gestionnaireDossierEmetteur = gestionnaireDossierEmetteur;
@@ -851,13 +930,13 @@ global with sharing class WS001_Edi {
         }
         
         public Case find(){ 
-			Case so = null;
-			if(NumDossierGE != null){
-				 List<Case> result = [SELECT Id FROM Case WHERE NumDossierGE__c=:this.NumDossierGE];             
-				if(!result.isEmpty()){
-					so = result[0];   
-				}
-			}           
+            Case so = null;
+            if(NumDossierGE != null){
+                 List<Case> result = [SELECT Id FROM Case WHERE NumDossierGE__c=:this.NumDossierGE];             
+                if(!result.isEmpty()){
+                    so = result[0];   
+                }
+            }           
             return so;
         }
         
@@ -912,21 +991,19 @@ global with sharing class WS001_Edi {
             so.LimiteEventuelleReglementDirect__c = om.LimiteEventuelleReglementDirect;
             so.TVAPriseEnChargeParAssureur__c = om.TVAPriseEnChargeParAssureur;
             so.SituationMaterielExpertiser__c = om.SituationMaterielExpertiser;
-            so.CodeLieuExamen__c = om.CodeLieuExamen;
+            //so.CodeLieuExamen__c = om.CodeLieuExamen;
             //so.TitreExamen__c = om.TitreExamen;
-            so.NomExamen__c = om.NomExamen;
-            so.AdresseLieuExamen__c = om.AdresseLieuExamen;
-            so.CodePostalLieuExamen__c = om.CodePostalLieuExamen;
-            //so.LocaliteLieuExamen__c = om.LocaliteLieuExamen;
-            //so.PaysLieuExamen__c = om.PaysLieuExamen;
-            //so.DateDepotVehiculeExamen__c = om.DateDepotVehiculeExamen;
+            //so.NomExamen__c = om.NomExamen;
+            //so.AdresseLieuExamen__c = om.AdresseLieuExamen;
+            //so.CodePostalLieuExamen__c = om.CodePostalLieuExamen;
+            
             so.DirectivesParticulieres__c = om.DirectivesParticulieres;
             so.CopieConstatAmiable__c = om.CopieConstatAmiable;
             so.AutresPiecesAdressees__c = om.AutresPiecesAdressees;
             so.RapportPapierNecessaire__c = om.RapportPapierNecessaire;
             so.NumeroMissionBCA__c = om.NumeroMissionBCA;
             so.ConditionsAchatVehicule__c = om.ConditionsAchatVehicule;
-            so.TelephoneLieuExamen__c = om.TelephoneLieuExamen;
+            //so.TelephoneLieuExamen__c = om.TelephoneLieuExamen;
             //so.CodeBCALieuExamen__c = om.CodeBCALieuExamen;
             //so.MarqueVehiculeAssure__c = om.//MarqueVehiculeAssure;
             //so.ModeleVehiculeAssure__c = om.//ModeleVehiculeAssure;
@@ -936,7 +1013,7 @@ global with sharing class WS001_Edi {
             //so.PrenomGestionnaire__c = om.PrenomGestionnaire;
             //so.AssureProprietaireVehicule__c = om.AssureProprietaireVehicule;
             so.TauxPriseEnCharge__c = om.TauxPriseEnCharge;
-            //so.CommentairesLigne1__c = om.Commentaires;
+            so.Commentaires__c = om.Commentaires;
             so.DateTarif__c = om.DateTarif;
             so.TarifT1__c = om.TarifT1;
             so.TarifT2__c = om.TarifT2;
@@ -961,16 +1038,10 @@ global with sharing class WS001_Edi {
             //Update dependencies
             so.ClientAssureur__c = clientAssureur.Name;
             
-            if(conseillerClient != null) so.OwnerId = conseillerClient.Id;
-            if(expert != null) so.ExpertTitulaire__c = expert.Id;
-            if(uniteExpert != null) so.UniteDexpert__c = uniteExpert.Id;
-            if(usc != null) so.USC__c = usc.Id;                
-            if(emetteur != null)so.Emetteur__c = emetteur.Id;
-             
+            if(emetteur != null)so.Emetteur__c = emetteur.Id;             
             if(gestionnaireDossierEmetteur != null) so.ContactId = gestionnaireDossierEmetteur.Id;
             if(tiers != null) so.tiers__c = tiers.Id;
-            if(reparateur != null) so.reparateur__c = reparateur.Id;
-            
+            if(reparateur != null) so.reparateur__c = reparateur.Id;            
             so.Lese__c = lese.Id;
             
         }

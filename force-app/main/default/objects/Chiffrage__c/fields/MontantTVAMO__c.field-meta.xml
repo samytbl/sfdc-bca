@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MontantTVAMO__c</fullName>
+    <description>Montant TVA sur la main d&#39;œuvre
+[MONT_TVA_REP_MO]</description>
+    <externalId>false</externalId>
+    <label>Montant de la TVA sur MO</label>
+    <precision>10</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

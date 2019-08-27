@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fullName>CodeLieuExamen__c</fullName>
     <description>[LIEXE]</description>
     <externalId>false</externalId>
@@ -14,29 +14,29 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>D</fullName>
-                <default>false</default>
-                <label>D : domicile assuré</label>
-            </value>
-            <value>
                 <fullName>R</fullName>
                 <default>false</default>
-                <label>R : réparateur</label>
+                <label>Réparateur</label>
+            </value>
+            <value>
+                <fullName>L</fullName>
+                <default>false</default>
+                <label>Lésé</label>
             </value>
             <value>
                 <fullName>B</fullName>
                 <default>false</default>
-                <label>B : au bureau de l&#39;expert</label>
+                <label>Bureau de l&#39;expert</label>
             </value>
             <value>
                 <fullName>C</fullName>
                 <default>false</default>
-                <label>C : centre d&#39;expertise</label>
+                <label>Centre d&#39;expertise</label>
             </value>
             <value>
-                <fullName>A</fullName>
+                <fullName>Z</fullName>
                 <default>false</default>
-                <label>A : autre</label>
+                <label>Autre</label>
             </value>
         </valueSetDefinition>
     </valueSet>

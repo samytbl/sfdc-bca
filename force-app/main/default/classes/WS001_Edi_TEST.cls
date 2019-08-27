@@ -9,12 +9,13 @@ public class WS001_Edi_TEST {
         recordTypes = new Map<String, String>(); 
         for(RecordType rt : [SELECT Id, DeveloperName FROM RecordType])
            recordTypes.put(rt.DeveloperName, rt.Id);
+       System.debug('recordTypes ' + recordTypes);
         createSampleRequest();
         System.debug('setup ' + request);
     }
 
     static void createSampleRequest(){
-         System.debug('recordTypes ' + recordTypes);
+        System.debug('recordTypes ' + recordTypes);
         request = new WS001_Edi.EdiRequest();
         OMTest om = new OMTest();
         DossierTest dossier = new DossierTest();
@@ -22,16 +23,17 @@ public class WS001_Edi_TEST {
         ClientAssureurTest clientAssureur = new ClientAssureurTest();
         EmetteurTest emetteur = new EmetteurTest();
         GestionnaireDossierEmetteurTest gestionnaireDossierEmetteur = new GestionnaireDossierEmetteurTest();
+        LieuExamenTest lieuExamen = new LieuExamenTest();
         ReparateurTest reparateur = new ReparateurTest();
         VehiculeOMTest vehiculeOM = new VehiculeOMTest();
         TiersTest tiers = new TiersTest();
-        request.referenceId = '1';
         request.om = om.dto;
         request.dossier = dossier.dto;
         request.lese = lese.dto;
         request.clientAssureur = clientAssureur.dto;
         request.emetteur = emetteur.dto;
         request.gestionnaireDossierEmetteur = gestionnaireDossierEmetteur.dto;
+        request.lieuExamen = lieuExamen.dto;
         request.reparateur = reparateur.dto;
         request.vehiculeOM = vehiculeOM.dto;
         request.tiers = tiers.dto;
@@ -73,8 +75,9 @@ public class WS001_Edi_TEST {
 
         public override void initSimple(){
 
-            dto = new WS001_Edi.OM();       
-            dto.ClientAssureur = 'PACIFICA';
+            dto = new WS001_Edi.OM();   
+            dto.ClientCode = '446';
+            dto.ClientName = 'PACIFICA';
             dto.DateMission = Date.today();
             dto.TypeEmetteur = 'C';
             dto.TitreEmetteur = 'SOC';
@@ -83,7 +86,9 @@ public class WS001_Edi_TEST {
             dto.CodePostalEmetteur = '92883';
             dto.LocaliteEmetteur = 'NANTERRE CEDEX 9';
             dto.PaysEmetteur = '';
+            dto.TelephoneEmetteur = '0238227732';
             dto.NomGestionnaire = 'PENOUTY';
+            dto.CodeSociete = '446';
             dto.NPoliceAssure = '8947016907';
             dto.NumeroSinistre = '5223488907/S03PTY';
             dto.NDossierEmetteur = '87284641907';
@@ -101,9 +106,26 @@ public class WS001_Edi_TEST {
             dto.PaysLese = '';
             dto.TelephoneLese = '';
             dto.ImmatriculationVehiculeAssure = 'EF-340-AY';
+            dto.NumeroSerieVehiculeAssure = '';
+            dto.DateMiseCirculationReelle = Date.today();
+            dto.IndicateurVGAVE = false;
             dto.ZonesChoc = '8';
             dto.DommagesDeclares = 'ASS. BOUCLIER AVANT';
             dto.ObservationsConstatLese = '';
+            dto.TitreTiers = '';
+            dto.TitreTiers = '';
+            dto.NomTiers = 'GUERROUMI';
+            dto.AdresseTiers = '';
+            dto.PaysTiers = '';
+            dto.CodePostalTiers = '42100';
+            dto.LocaliteTiers = '';
+            dto.CodeSocieteTiers = '369';
+            dto.LibelleSocieteTiers = 'MACIF';
+            dto.LibelleMarqueVehiculeTiers = '';
+            dto.LibelleModeleVehiculeTiers = '';
+            dto.ImmatriculationVehiculeTiers = '';
+            dto.DommagesDeclaresTiers = '';
+            dto.ObservationsConstatTiers = '';
             dto.GarantieMiseEnJeu = 'T';
             dto.DateSouscriptionContrat = Date.today();
             dto.CodePlafondGarantie = 'E';
@@ -132,11 +154,13 @@ public class WS001_Edi_TEST {
             dto.DirectivesParticulieres = '';
             dto.CopieConstatAmiable = '';
             dto.AutresPiecesAdressees = '';
+            dto.FaxEmetteur = 0238889988;
             dto.RapportPapierNecessaire = false;
             dto.NumeroMissionBCA = '87284641';
             dto.ConditionsAchatVehicule = '';
             dto.TelephoneLieuExamen = '388342767';
             dto.CodeBCALieuExamen = 87005;
+            dto.DatePremiereMiseCirculation = Date.today();
             dto.LibelleMarqueVehiculeAssure = 'AUDI';
             dto.LibelleModeleVehiculeAssure = 'A6 AVANT V';
             dto.ListeCodesGarantiesAcquises = 'LBNTIVR';
@@ -144,8 +168,12 @@ public class WS001_Edi_TEST {
             dto.NumeroTelephoneGestionnaire = '559629991';
             dto.PrenomGestionnaire = 'GERALD';
             dto.AssureProprietaireVehicule = false;
+            dto.PuissanceReelle = 106;
             dto.TauxPriseEnCharge = 0;
-            dto.CommentairesLigne1 = '';
+            dto.InfoConstat = '';
+            dto.AutreTelephoneLese = '559629991';
+            dto.Commentaires = '';
+            dto.CodeReparateur = 5458855;
             dto.DateTarif = Date.today();
             dto.TarifT1 = 0;
             dto.TarifT2 = 0;
@@ -162,6 +190,8 @@ public class WS001_Edi_TEST {
             dto.Clause4 = '';
             dto.Clause5 = '';
             dto.NatureMission = '';
+            dto.CategorieMateriel = '';
+			dto.GarantieMiseEnJeuDeux = '';
         }
 
     }
@@ -174,7 +204,8 @@ public class WS001_Edi_TEST {
 
         public override void initSimple(){
 
-            dto = new WS001_Edi.Dossier();  
+            dto = new WS001_Edi.Dossier(); 
+            dto.NumDossierGE = 26319506;
             dto.RecordTypeId = recordTypes.get('Dossier');         
         
         }
@@ -194,7 +225,7 @@ public class WS001_Edi_TEST {
             dto.CodeSociete = '446';
             dto.Name = 'PACIFICA';
             dto.LibelleSociete = 'PACIFICA';
-            dto.RecordTypeId = recordTypes.get('Client');         
+            dto.RecordTypeId = recordTypes.get('ClientAssureur');         
         
         }
 
@@ -211,7 +242,7 @@ public class WS001_Edi_TEST {
 
             dto = new WS001_Edi.Emetteur();        
             dto.TypeEmetteur = '';
-            dto.Title = 'MLLE';
+            dto.Titre = 'MLLE';
             dto.Name = 'BENESSY';
             dto.BillingStreet = 'FLORIANE LIEU DIT LA REPUBLIQUE CHEZ BENESSY BERNARD';
             dto.BillingPostalCode = '42660';
@@ -254,7 +285,7 @@ public class WS001_Edi_TEST {
 
             dto = new WS001_Edi.Lese();
             dto.NPoliceAssure = '6644922906';
-            dto.Title = 'MLLE';
+            dto.Titre = 'MLLE';
             dto.Name = 'BENESSY';
             dto.BillingStreet = 'FLORIANE LIEU DIT LA REPUBLIQUE CHEZ BENESSY BERNARD';
             dto.BillingPostalCode = '42660';
@@ -269,6 +300,31 @@ public class WS001_Edi_TEST {
 
     }
 
+    private class LieuExamenTest extends DTOTest{
+        WS001_Edi.LieuExamen dto;
+
+        LieuExamenTest(){
+            super();
+        }
+
+        public override void initSimple(){
+
+            dto = new WS001_Edi.LieuExamen();
+            dto.CodeLieuExamen = 'R';
+            dto.Titre = 'Z';
+            dto.Name = 'FOURRIERE DE PARIS';
+            dto.BillingStreet = '32 QUAI DE CLICHY';
+            dto.BillingPostalCode = '92110';
+            dto.BillingCity = 'LEVALLOIS PERRET';
+            dto.BillingCountry = 'France';
+            dto.Phone = '147312215';
+            dto.DateDepotVehiculeExamen = Date.today(); 
+			dto.Phone = '147312215';
+			dto.CodeBCALieuExamen = 93310;     
+        }
+
+    }
+    
     private class ReparateurTest extends DTOTest{
         WS001_Edi.Reparateur dto;
 
@@ -279,14 +335,7 @@ public class WS001_Edi_TEST {
         public override void initSimple(){
 
             dto = new WS001_Edi.Reparateur();
-            dto.Title = 'Z';
-            dto.Name = 'FOURRIERE DE PARIS';
-            dto.BillingStreet = '32 QUAI DE CLICHY';
-            dto.BillingPostalCode = '92110';
-            dto.BillingCity = 'LEVALLOIS PERRET';
-            dto.BillingCountry = 'France';
-            dto.Phone = '147312215';
-            dto.CodeIntervGE = 27928504;
+            dto.CodeReparateur = 5458855;
             dto.RecordTypeId = recordTypes.get('ProfessionnelsAutomobile');       
         }
 
@@ -302,7 +351,7 @@ public class WS001_Edi_TEST {
         public override void initSimple(){
 
             dto = new WS001_Edi.Tiers();
-            dto.Title = '';
+            dto.Titre = '';
             dto.Name = 'GUERROUMI';
             dto.BillingStreet = '';
             dto.BillingCountry = '';
@@ -310,6 +359,11 @@ public class WS001_Edi_TEST {
             dto.BillingCity = '';
             dto.CodeSociete = '369';
             dto.LibelleSociete = 'MACIF';
+            dto.LibelleMarqueVehiculeTiers = '';
+            dto.LibelleModeleVehiculeTiers = '';
+            dto.ImmatriculationVehiculeTiers = '';
+            dto.DommagesDeclaresTiers = '';
+            dto.ObservationsConstatTiers = '';
             dto.RecordTypeId = recordTypes.get('Tiers'); 
         }
 
@@ -330,8 +384,8 @@ public class WS001_Edi_TEST {
             dto.IndicateurVGAVE = false;
             dto.DommagesDeclares = '';
             dto.ObservationsConstat = 'NUMERO CONTRAT TIERS : 8268102';
-            dto.LibelleMarqueVehiculeAssure = 'RENAULT';
-            dto.LibelleModeleVehiculeAssure = '';
+            dto.LibelleMarqueVehicule = 'RENAULT';
+            dto.LibelleModeleVehicule = '';
             dto.DatePremiereMiseCirculation = Date.today();
             dto.PuissanceReelle = 106;
             dto.RecordTypeId = recordTypes.get('VehiculeOM'); 

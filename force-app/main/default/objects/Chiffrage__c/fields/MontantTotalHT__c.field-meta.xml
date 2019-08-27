@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>MontantTotalHT__c</fullName>
     <externalId>false</externalId>
-    <label>Montant Total HT</label>
+    <label>Montant total HT</label>
     <summarizedField>LigneChiffrage__c.PrixHT__c</summarizedField>
     <summaryForeignKey>LigneChiffrage__c.Chiffrage__c</summaryForeignKey>
     <summaryOperation>sum</summaryOperation>

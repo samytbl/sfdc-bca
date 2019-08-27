@@ -4,7 +4,7 @@
     <description>[LOCAX]</description>
     <externalId>false</externalId>
     <label>Localité du lieu d&#39;examen</label>
-    <length>27</length>
+    <length>38</length>
     <required>false</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>

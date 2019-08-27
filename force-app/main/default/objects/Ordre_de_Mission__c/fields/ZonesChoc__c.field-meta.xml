@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <fullName>ZonesChoc__c</fullName>
     <description>[NCHOC9] La ou les zone(s) de choc touché(s) sur le véhicule de l&#39;assuré dû au sinistre.</description>
     <externalId>false</externalId>
