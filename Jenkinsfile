@@ -1,3 +1,4 @@
+def testres = ''
 def getBuildUser() {
     return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
 }
@@ -22,7 +23,7 @@ pipeline {
         echo 'Testing...'
         slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) by ${BUILD_USER}")
         sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev > outFile'
-        TEST_RESULT =  readFile('outFile').trim()
+        testres =  readFile('outFile').trim()
         echo "The current date is ${TEST_RESULT}"
       }
     }
