@@ -1,45 +1,31 @@
-def testres = ''
 def getBuildUser() {
     return currentBuild.rawBuild.getCause(Cause.UserIdCause).getUserId()
 }
 pipeline {
-  environment {
-    BUILD_USER = 'Samy Toubal'
-    TEST_RESULT = ''
-  }
   agent any
   stages {
     stage('Authorize sandbox access') { 
       steps {
         echo 'Authorizing..'
-        sh 'sfdx force:auth:jwt:grant --clientid 3MVG9ZPHiJTk7yFz1xusewVMyUEyjAwXD5.IllPw9T7Y3K4grd16m_jiQ2Ca0HKCErFsqEP1Sh7IE_CrMuunH --jwtkeyfile /opt/bcaexpertise/data/jenkins/.ssh/server.key --username stoubal@salesforce.com.dev --instanceurl https://test.salesforce.com --setdefaultdevhubusername'
+        sh 'sfdx force:auth:jwt:grant --clientid 3MVG9KlmwBKoC7U2wyLeOyzUXsAgoWTQoNccKnLdTh5qFw1Nzuv71i5H96EWLAiDLH.3t6G8E_uOp458I_aOt --jwtkeyfile /opt/bcaexpertise/data/jenkins/.ssh/server.key --username interface.ci@bca.com.integ --instanceurl https://test.salesforce.com --setdefaultdevhubusername'
       }
     }
     stage('Run Unit Test') { 
       steps {
-        // script {
-        //   BUILD_USER = getBuildUser()
-        // }
         echo 'Testing...'
-        //slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL}) by ${BUILD_USER}")
-        sh 'sfdx force:apex:test:run -u stoubal@salesforce.com.dev > outFile'
-        echo sh(script: 'ls -al', returnStdout: true).result
+        sh 'sfdx force:apex:test:run -u interface.ci@bca.com.integ'
       }
     }
-    
-    // stage('Deploy with unit test') { 
-    //   steps {
-    //     echo 'Deploying..'
-    //     sh 'sfdx force:source:deploy -c -p force-app -u stoubal@salesforce.com.dev --testlevel RunLocalTests'
-    //   }
-    // }
+    stage('Deploy with unit test') { 
+      steps {
+        echo 'Deploying..'
+        sh 'pwd > workspace'
+        //sh 'sfdx force:source:deploy -c -p force-app -u interface.ci@bca.com.integ --testlevel RunLocalTests'
+        //sh 'sfdx force:org:create -s -f config/project-scratch-def.json -a stoubalhouse-org'
+        sh 'sfdx force:org:create --definitionfile config/project-scratch-def.json --setalias ciorg --wait 10 --durationdays 1'
+        sh 'sfdx force:source:push'
+      }
+    }
   }
-  post {
-      success {
-        //slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-      }
-      failure {
-        //slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-      }
-    }
 }
+
