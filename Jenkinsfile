@@ -22,7 +22,7 @@ pipeline {
         sh 'ls -ax'
         //sh 'sfdx force:source:deploy -c -p force-app -u interface.ci@bca.com.integ --testlevel RunLocalTests'
         //sh 'sfdx force:org:create -s -f config/project-scratch-def.json -a stoubalhouse-org'
-        sh 'sfdx force:org:create --definitionfile https://github.com/samytbl/sfdc-bca/blob/master/config/project-scratch-def.json --setalias ciorg --wait 10 --durationdays 1'
+        sh 'sfdx force:org:create --definitionfile config/project-scratch-def.json --setalias ciorg --wait 10 --durationdays 1'
         sh 'sfdx force:source:push'
       }
     }
