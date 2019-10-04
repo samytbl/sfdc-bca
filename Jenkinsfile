@@ -7,7 +7,7 @@ pipeline {
     stage('Authorize sandbox access') { 
       steps {
         echo 'Authorizing..'
-        sh 'sfdx force:auth:jwt:grant --clientid 3MVG9KlmwBKoC7U2wyLeOyzUXsAgoWTQoNccKnLdTh5qFw1Nzuv71i5H96EWLAiDLH.3t6G8E_uOp458I_aOt --jwtkeyfile /opt/bcaexpertise/data/jenkins/.ssh/server.key --username interface.ci@bca.com.integ --instanceurl https://test.salesforce.com --setdefaultdevhubusername'
+        sh 'sfdx force:auth:jwt:grant --clientid 3MVG9KlmwBKoC7U2wyLeOyzUXsAgoWTQoNccKnLdTh5qFw1Nzuv71i5H96EWLAiDLH.3t6G8E_uOp458I_aOt --jwtkeyfile /Users/stoubal/desktop/server/server.key --username interface.ci@bca.com.integ --instanceurl https://test.salesforce.com --setdefaultdevhubusername'
       }
     }
     stage('Run Unit Test') { 
